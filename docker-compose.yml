@@ -1,0 +1,36 @@
+services:
+  frontend-service:
+    build: ./frontend
+    command: npm run dev -- --host
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: always      
+    env_file:
+      - ./frontend/.env
+    networks:
+      - ecommerce_net
+
+
+  nginx-gateway:
+    image: nginx:stable-alpine
+    container_name: nginx-frontend
+    restart: always
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - frontend-service
+    networks:
+      - ecommerce_net
+
+  tunnel-cloudflare:
+    image: cloudflare/cloudflared:latest
+    restart: always
+    command: tunnel --no-autoupdate run --token ${TUNNEL_TOKEN}
+    networks:
+      - ecommerce_net
+
+
+networks:
+  ecommerce_net:
+    driver: bridge

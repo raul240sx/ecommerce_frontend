@@ -1,0 +1,131 @@
+.register-container {
+  display: flex;             /* Activamos el modo Flexbox */
+  justify-content: center;    /* Centra horizontalmente (eje X) */
+  align-items: center;        /* Centra verticalmente (eje Y) */
+  min-height: 100vh;         /* Ocupa el 100% de la altura de la pantalla */
+  padding: 20px;
+  flex-direction: column;    /* Ponemos el H1 arriba y la tarjeta abajo */
+}
+
+.register-container h1 {
+  margin-bottom: 2rem;
+  color: var(--secondary-color);
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.register-card {
+  background-color: var(--white);
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidad */
+  width: 100%;
+  max-width: 450px;           /* Evitamos que se estire demasiado en pantallas grandes */
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;  /* Estilo "Senior" para labels secundarios */
+  letter-spacing: 0.5px;
+  color: #666;
+}
+
+.form-group input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: var(--transition); /* Usamos la variable global que definimos */
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(211, 84, 0, 0.1); /* Efecto de "halo" al hacer focus */
+}
+
+
+button[type="submit"] {
+  width: 100%;
+  padding: 14px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: var(--transition);
+}
+
+button[type="submit"]:hover {
+  filter: brightness(1.1); /* Aclara un poco el naranja al pasar el mouse */
+  transform: translateY(-1px); /* Efecto sutil de elevación */
+}
+
+button[type="submit"]:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.error-message {
+  min-height: 1.2rem; /* Evita que el layout "salte" cuando aparece el error */
+  display: block;
+}
+
+.error-message ul {
+  list-style: none;
+  padding: 0;
+  margin: 5px 0;
+}
+
+.error-message li {
+  color: var(--error);
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  background-color: rgba(231, 76, 60, 0.1); /* Fondo rojizo muy suave */
+  border-left: 3px solid var(--error);
+  margin-bottom: 4px;
+}
+
+/* Este es el contenedor que envuelve el Input y el Botón */
+/* El contenedor debe ser relativo para que el botón no se escape a cualquier lado */
+.password-field-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* El input necesita un padding a la derecha para que el texto no se meta debajo del botón */
+.password-field-wrapper input {
+  width: 100%;
+  padding-right: 80px; /* Ajusta según el ancho de tu botón */
+}
+
+/* El botón se posiciona de forma quirúrgica */
+.toggle-password-btn {
+  position: absolute;
+  right: 10px;           /* Separación del borde derecho */
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-size: 0.75rem;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  padding: 5px;
+}
+
+.toggle-password-btn:hover {
+  opacity: 0.8;
+}

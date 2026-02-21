@@ -1,7 +1,6 @@
-import { useState } from "react";
-import { useEffect } from "react";
-import { useSearchParams } from "react-router-dom"
-import { Link } from "react-router-dom";
+import { useEffect, useState, useRef } from "react";
+import { useSearchParams, Link} from "react-router-dom"
+
 
 import api from "../../api/axios"
 
@@ -17,9 +16,14 @@ function VerifyEmailPage() {
     const uidb64 = searchParams.get("uidb64");
     const token = searchParams.get("token");
 
+
+    const hasRequested = useRef(false)
+
     useEffect(() => {
-        
+        if (hasRequested.current) return;
+
         const verifyParams = async () => {
+            hasRequested.current = true;
 
             if (!uidb64 || !token) {
                 setState("error")
@@ -28,7 +32,7 @@ function VerifyEmailPage() {
             };
 
             try{
-                const response = await api.post("email-verification/", {"uidb64":uidb64, "token":token});
+                const response = await api.post("users-api/email-verification/", {"uidb64":uidb64, "token":token});
                 console.log("Respuesta del servidor:", response.data);
                 setSuccessMsg(response.data.message)
                 setState("success")

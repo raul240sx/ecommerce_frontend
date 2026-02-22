@@ -1,0 +1,16 @@
+:root {
+  --primary-color: rgb(255, 153, 0); 
+  --text-color: #333;
+  --error-color: #ff0400;
+  --bg-color: #f8f9fa;
+  --white: #ffffff;
+  --border-radius: 0.4rem;
+  --shadow: rgba(0,0,0,0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Fundamental: el padding no suma ancho al elemento */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

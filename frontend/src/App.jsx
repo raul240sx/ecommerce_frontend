@@ -4,6 +4,7 @@ import RegisterPage from "./pages/Register/RegisterPage";
 import LoginPage from "./pages/Login/LoginPage";
 import HomePage from "./pages/Home/HomePage";
 import VerifyEmailPage from "./pages/Register/VerifyEmailPage";
+import PasswordRecoveryPage from "./pages/Login/PasswordRecoveryPage";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path="/register" element={<RegisterPage/>} />
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/email-verification" element={<VerifyEmailPage/>} />
+        <Route path="/password-recovery" element={<PasswordRecoveryPage/>} />
 
 
         <Route path="*" element={<h1>404 - Página no encontrada</h1>} />

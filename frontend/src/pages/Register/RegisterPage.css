@@ -22,6 +22,9 @@
     box-shadow: 0 10px 25px var(--shadow);
 }
 
+.auth-card h1{
+    text-align: center;
+}
 
 .form-group {
     display:flex;

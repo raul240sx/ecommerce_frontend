@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 
 import api from "../../api/axios"
+import './LoginPage.css'
 
 function LoginPage() {
 
@@ -17,6 +18,8 @@ function LoginPage() {
     const [errors, setErrors] = useState({});
 
     const [showPass, setShowPass] = useState(false);
+
+    const [disableButton, setDisableButton] = useState(false);
 
 
     useEffect(() => {
@@ -34,9 +37,16 @@ function LoginPage() {
     );
 
 
+      /* MOSTRAR/OCULTAR CONTRASEÑA */
+    const handleShowPass = () => {
+        setShowPass(!showPass);
+    }
+
     const handleSubmit = async(e) =>{
         e.preventDefault();
         setErrors({});
+
+        setDisableButton(true);
 
         try{
             const response = await api.post("token/", loginForm);
@@ -89,43 +99,73 @@ function LoginPage() {
 
 
     return(
-        <div className="login-container">
-            {(errors.detail || errors.non_field_errors) &&
-            <div className="error-container">
-                {errors.detail || errors.non_field_errors?.[0]}
-            </div>
+        <div className="register-container">
+            <div className="login-form auth-card">
+                <h1>Inicia sesión en GuitarZone</h1>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="email-input">Correo Electrónico</label>
+                        <input
+                        id="email-input"
+                        type="text"
+                        name="email"
+                        placeholder="Correo Electrónico"
+                        autoComplete="username"
+                        onChange={handleChange}
+                        value={loginForm.email} />
+                        <span className='error-message' aria-live='polite'>
+                            {errors.email && errors.email[0]}
+                        </span>
+                    </div>
+                    
+                    <div className="form-group">
+                        <label htmlFor="password-login-input">Contraseña</label>
+                        <div className='password-field-wrapper'>
+                            <input
+                            id='password-login-input'
+                            type={ showPass? 'text' : 'password' }
+                            name='password' 
+                            placeholder='Contraseña'
+                            autoComplete='new-password'
+                            value={loginForm.password} 
+                            onChange={ handleChange }/>
 
-            }
+                            <button
+                            type='button'
+                            className='toggle-password-btn'
+                            onClick={ handleShowPass }>
+                                { showPass? (
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                                </svg>) : 
+                                (
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                                <line x1="1" y1="1" x2="23" y2="23"></line>
+                                </svg>) }
+                            </button>
+                        </div>
+                    </div>
+                    <span className='error-message' aria-live='polite'>
+                        {errors.password && errors.password[0]}
+                    </span>
+                    <button
+                        className='login-btn' 
+                        type='submit'
+                        disabled={disableButton}>
+                        Iniciar Sesión
+                    </button>  
+                </form>
 
-            <h1>Inicia sesión</h1>
-            <form onSubmit={handleSubmit}>
-                <input 
-                type="text"
-                name="email"
-                placeholder="Correo Electrónico"
-                onChange={handleChange}
-                value={loginForm.email} />
-                {errors.email && <span className="error-msg">{errors.email[0]}</span>}
+                <div className='auth-links'>
+                    <p>¿No tienes cuenta? <Link to="/register">Regístrate aquí</Link> </p>
+                    <p>Olvidaste tu contraseña? <Link to='/password-recovery'>Recuperar contraseña</Link></p>
+                    <hr />
+                    <p><Link to='/'>Volver al inicio</Link></p>
 
-                <input 
-                type={showPass? "text" : "password"}
-                name="password"
-                placeholder="Contraseña"
-                onChange={handleChange}
-                value={loginForm.password} />
-                {errors.password && <span className="error-msg">{errors.password[0]}</span>}  
-                <button 
-                type="button"
-                name="show-hide-button"
-                onClick={handleShowHideButton}>{showPass? "Ocultar" : "Mostrar"} contraseña</button>
-
-                <button 
-                type="submit"
-                >Entrar</button>
-            </form>
-
-            <div>
-                <p>¿No tienes cuenta? <Link to="/register">Regístrate aquí</Link> </p>
+        
+                </div>
             </div>
         </div>
         
@@ -134,3 +174,5 @@ function LoginPage() {
 }
 
 export default LoginPage
+
+

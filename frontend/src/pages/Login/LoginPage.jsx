@@ -89,11 +89,7 @@ function LoginPage() {
         })
     };
 
-    const handleShowHideButton = (e) =>{
-        if (e.target.name === "show-hide-button") {
-            setShowPass(!showPass)
-        }
-    };
+
 
     
 

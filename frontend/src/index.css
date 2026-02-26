@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Six+Caps&display=swap');
+
 :root {
   --primary-color: rgb(255, 153, 0); 
   --text-color: #333;
@@ -6,6 +8,7 @@
   --white: #ffffff;
   --border-radius: 0.4rem;
   --shadow: rgba(0,0,0,0.1);
+  --logo-font: 'Six Caps', sans-serif;
 }
 
 * {

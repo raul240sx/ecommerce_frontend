@@ -32,14 +32,13 @@ function MobileMenuMultilevel({ isOpen, closeMenu }) {
               {isAuthenticated? (
                 <>
                 <Link to='/profile' onClick={closeMenu}>Mi perfil</Link>
-                <Link to='/my-purchases' onClick={closeMenu}>Mis compras</Link>
                 <Link to='/logout' onClick={closeMenu}>Cerrar sesión</Link>
                 </>
               ) : (
                 <>
-                  <Link to='/login'>Iniciar Sesion</Link>
-                  <Link to="/register">Regístrate</Link>
-                  <Link to='/password-recovery'>Recuperar contraseña</Link>
+                  <Link to='/login' onClick={closeMenu}>Iniciar Sesion</Link>
+                  <Link to="/register" onClick={closeMenu}>Regístrate</Link>
+                  <Link to='/password-recovery' onClick={closeMenu}>Recuperar contraseña</Link>
                 </>
               )
               }

@@ -1,33 +1,67 @@
+import { Link } from 'react-router-dom'; 
 import { UserIcon } from '../common/Icons';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useAuth } from '../../context/AuthContext';
 
 
 function DesktopMenu() {
-  const [categoryMenu, setCategoryMenu] = useState(false)
-  
-  
-  return(
-    <div className='desktop-menu'>
-      <button className='category-button' onClick={() => setLevelMenu(1)}>Categorías</button>
-      {isAuthenticated? (
-        <>
-        <button className='profile'>
-          {isAuthenticated? ( <p>{user.name || user.email.split('@')[0]}</p> ) : <UserIcon className='user-icon'/>}
-        </button>
-          <Link to='/profile' onClick={closeMenu}>{isAuthenticated && ( <p>{user.name || user.email.split('@')[0]}</p> )}</Link>
-          <Link to='/my-purchases' onClick={closeMenu}>Mis compras</Link>
-          <Link to='/logout' onClick={closeMenu}>Cerrar sesión</Link>
-        </>
-      ) : (
-        <>
-          <Link to='/login'>Iniciar Sesion</Link>
-          <Link to="/register">Regístrate</Link>
-          <Link to='/password-recovery'>Recuperar contraseña</Link>
-        </>
-      )
-      }
+  const { user, isAuthenticated } = useAuth();
+  const [categoryMenu, setCategoryMenu] = useState(false);
+  const menuRef = useRef(null);
 
-    </div>
+  const handleMenu = () => {
+    setCategoryMenu(!categoryMenu)
+  }
+
+
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setCategoryMenu(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+  }, []);
+
+  return(
+    <>
+      <div className='desktop-menu'>
+        <div className='dropdown category' ref={menuRef}>
+          <button className='dropdown-trigger' onClick={handleMenu}>Categorías</button>
+          {categoryMenu && (
+          <div className='category-links'>
+            <Link to='/categories/guitars' onClick={handleMenu}>Guitarras</Link>
+            <Link to='/categories/amplifiers' onClick={handleMenu}>Amplificadores</Link>
+            <Link to='/categories/accesories' onClick={handleMenu}>Accesorios</Link>
+          </div>
+          )}
+
+
+        </div>
+        
+        {isAuthenticated? (
+          <div className='logged-links user-links'>
+            <Link to='/profile'>{isAuthenticated && ( <p>{user.name || user.email.split('@')[0]}</p> )}</Link>
+            <Link to='/logout'>Cerrar sesión</Link>
+          </div>
+        ) : (
+          <div className='unlogged-links user-links'>
+            <Link to='/login'>Iniciar Sesion</Link>
+            <Link to="/register">Regístrate</Link>
+          </div>
+        )
+        }
+
+      </div>
+      
+    </>
     
   )
 }

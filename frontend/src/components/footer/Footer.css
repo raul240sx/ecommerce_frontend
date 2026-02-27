@@ -1,0 +1,162 @@
+
+.footer-container {
+    max-height: 500px;
+    display: flex;
+    width: 100%;
+    background-color: rgba(18, 18, 18, 0.92);
+    color: var(--primary-color);
+    justify-content: center;
+
+}
+
+.footer-content {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+.footer-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.footer-box {
+    flex: 1;
+    padding: 0 2rem;
+    box-sizing: border-box;
+    gap: 0.5rem;
+}
+
+.first-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+
+}
+
+
+.first-box a {
+    display: flex;
+    text-decoration: none;
+   
+}
+
+.second-box {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+.third-box {
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+
+.fourth-box {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.footer-links a {
+    display: flex;
+    
+  
+}
+
+
+.third-box a,
+.fourth-box a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.footer-content hr {
+    border-top: 1;
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 0;
+}
+
+#location {
+    display: flex;
+}
+
+#creator-name {
+    font-weight: 600;
+    font-size: large;
+}
+
+
+.footer-box a:hover {
+    text-decoration: underline;
+}
+
+.first-box a:hover {
+    text-decoration: none;
+}
+
+
+.footer-box a:active {
+    transform: scale(0.95);
+}
+
+.first-box a:active {
+    transform: none;
+}
+
+.mobile-divider {
+    display: none;
+}
+
+
+/* --- Estilos para Móvil --- */
+@media (max-width: 768px) {
+    .footer-container {
+        max-height: none;
+        padding: 2rem;
+    }
+
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .footer-top {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .mobile-divider {
+        display: block;    
+        width: 80%;        
+        height: 1px;      
+        background-color: rgba(255, 255, 255, 0.1); 
+        margin: 1rem auto; 
+    }
+
+    .footer-bottom {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+}

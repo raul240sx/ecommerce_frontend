@@ -145,6 +145,11 @@
         gap: 2rem;
     }
 
+    .second-box {
+        text-align: center;
+        text-justify: initial;
+    }
+
     .mobile-divider {
         display: block;    
         width: 80%;        

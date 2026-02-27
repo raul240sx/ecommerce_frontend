@@ -16,4 +16,19 @@
   padding: 0;
   box-sizing: border-box; /* Fundamental: el padding no suma ancho al elemento */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh; /* Altura dinámica de la pantalla */
+}
+
+.main-content {
+  flex: 1; /* Esto obliga al main a estirarse y empujar al footer */
 }

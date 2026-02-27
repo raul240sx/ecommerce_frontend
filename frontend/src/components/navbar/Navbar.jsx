@@ -39,7 +39,7 @@ function Navbar() {
     <nav className='navbar'>
         <div className='navbar-content'>
           <div className='nav-left-part'>
-            <Link to='/'><img id='logo-img' src={logo} /><p id='logo-first-part'>GUITAR</p><p id='logo-second-part'>ZONE</p></Link>
+            <Link to='/'><img className='logo-img' src={logo} /><p className='logo-first-part'>GUITAR</p><p className='logo-second-part'>ZONE</p></Link>
           </div>
           <div className='nav-right-part'>
             {isMobile? (<MobileMenu toggleMenu={() => setIsMenuOpen(!isMenuOpen)} />) : 

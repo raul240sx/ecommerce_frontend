@@ -24,7 +24,7 @@
 
 
 /* LOGO */
-#logo-first-part {
+.logo-first-part {
     font-family: var(--logo-font);
     font-size: 3.5rem;
     font-weight: 400; 
@@ -37,7 +37,7 @@
         2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
-#logo-second-part {
+.logo-second-part {
     font-family: var(--logo-font);
     font-size: 3.5rem;
     font-weight: 400;
@@ -49,7 +49,7 @@
         2px 2px 3px rgba(0, 0, 0, 0.9);      
 }
 
-#logo-img {
+.logo-img {
     filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));
     max-width: 80px; 
 }

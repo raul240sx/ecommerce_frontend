@@ -145,9 +145,17 @@
         gap: 2rem;
     }
 
+    .first-box a {
+        justify-content: center;
+    }
+
+    #location {
+        justify-content: center;
+    }
+
+
     .second-box {
         text-align: center;
-        text-justify: initial;
     }
 
     .mobile-divider {

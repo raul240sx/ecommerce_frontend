@@ -14,12 +14,12 @@ function Footer() {
 			<div className='footer-content'>
 				<div className='footer-top'>
 				<div className='footer-box first-box'>
-				<Link to='/' onClick={handleScrollToTop}><img className='logo-img' src={logo} /><p className='logo-first-part'>GUITAR</p><p className='logo-second-part'>ZONE</p></Link>
-				<p id='lem'>El mejor sonido al mejor precio</p>
-				<p id='location'>
-          <span id='location-icon'><LocationIcon/></span> 
-          Concepción | Bío-Bío
-        </p>
+				  <Link to='/' onClick={handleScrollToTop}><img className='logo-img' id='logo-footer' src={logo} /><p className='logo-first-part'>GUITAR</p><p className='logo-second-part'>ZONE</p></Link>
+				  <p id='lem'>El mejor sonido al mejor precio</p>
+				  <p id='location'>
+            <span id='location-icon'><LocationIcon/></span> 
+            Concepción | Bío-Bío
+          </p>
 				</div>
 
         <div className='mobile-divider'></div>

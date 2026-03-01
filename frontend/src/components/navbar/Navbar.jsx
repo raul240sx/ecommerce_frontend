@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
 import logo from '../../assets/logo_navbar.png'
+import { handleScrollToTop } from '../../utils/ScrollUtils';
+
 import './Navbar.css';
 import MobileMenu from './MobileMenu';
 import DesktopMenu from './DesktopMenu';
@@ -39,7 +42,7 @@ function Navbar() {
     <nav className='navbar'>
         <div className='navbar-content'>
           <div className='nav-left-part'>
-            <Link to='/'><img className='logo-img' src={logo} /><p className='logo-first-part'>GUITAR</p><p className='logo-second-part'>ZONE</p></Link>
+            <Link to='/' onClick={handleScrollToTop}><img className='logo-img' id='logo-navbar' src={logo} /><p className='logo-first-part'>GUITAR</p><p className='logo-second-part'>ZONE</p></Link>
           </div>
           <div className='nav-right-part'>
             {isMobile? (<MobileMenu toggleMenu={() => setIsMenuOpen(!isMenuOpen)} />) : 

@@ -1,11 +1,14 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import api from '../../api/axios.js';
+import { useAuth } from '../../context/AuthContext.jsx';
 import './RegisterPage.css'
 
 
 function RegisterPage() {
   /* Declaracion de estados */
+  const navigate = useNavigate();
+  const { isAuthenticated, loading} = useAuth();
   const [errors, setErrors] =useState({});
 
   const [registerForm, setRegisterForm] = useState({
@@ -19,6 +22,16 @@ function RegisterPage() {
   const [disableButton, setDisableButton] = useState(false);
 
   const [isRegistered, setIsRegistered] = useState(false);
+
+
+  /* REDIRECCIONAR A HOME ('/') SI ESTÁ AUTENTICADO */
+
+  useEffect(() => {
+
+    if (!loading && isAuthenticated) {
+      navigate('/');
+    }
+  }, [isAuthenticated, navigate] )
   
 
   /* ACTUALIZAR LO ESCRITO EN LOS INPUTS */
@@ -77,7 +90,7 @@ function RegisterPage() {
         
       // El servidor respondió con un código fuera del rango 2xx
         console.log("Datos de error de Django:", error.response.data);
-        console.log("Código de estado:", error.status);
+        console.log("Código de estado:", error.response.status);
       } 
       
       else {
@@ -96,7 +109,14 @@ function RegisterPage() {
   const passwordRequirements = errors.password?.filter(msg => msg !== blankError) || [];
 
 
-
+  if (loading) {
+    return (
+      <div className='loading-screen'>
+      <p>Verificando sesión...</p> 
+      {/* Spinner de carga */}
+    </div>
+    );
+  }
 
   return(
     <div className='register-container'>

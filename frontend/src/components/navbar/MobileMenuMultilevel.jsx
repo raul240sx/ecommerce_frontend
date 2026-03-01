@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { Link } from 'react-router-dom'; 
+
+import { handleScrollToTop } from '../../utils/ScrollUtils';
+
 import { BackArrowIcon } from '../common/Icons';
 
 
@@ -25,7 +28,10 @@ function MobileMenuMultilevel({ isOpen, closeMenu }) {
           { (levelMenu === 0 ) && (
             <div className='first-menu submenu'>
               {isAuthenticated && ( <h3>{user.name || user.email.split('@')[0]}</h3> )}
-              <Link to='/' onClick={closeMenu}>Inicio</Link>
+              <Link to='/' onClick={ () => {
+                closeMenu();
+                handleScrollToTop(true);
+                }}>Inicio</Link>
               <button className='category-button' onClick={() => setLevelMenu(1)}>Categorías</button>
               
      

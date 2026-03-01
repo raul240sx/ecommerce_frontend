@@ -126,6 +126,12 @@
     display: none;
 }
 
+#logo-footer {
+    margin-top: 0.3rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.4rem;
+}
+
 
 /* --- Estilos para Móvil --- */
 @media (max-width: 768px) {

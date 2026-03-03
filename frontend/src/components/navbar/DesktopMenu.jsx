@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom'; 
-import { UserIcon } from '../common/Icons';
 import { useEffect, useRef, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 
 
 function DesktopMenu() {
-  const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated, logOut} = useAuth();
   const [categoryMenu, setCategoryMenu] = useState(false);
   const menuRef = useRef(null);
 
@@ -13,6 +12,10 @@ function DesktopMenu() {
     setCategoryMenu(!categoryMenu)
   }
 
+  const handleLogOut = async() => {
+    await logOut();
+    navigate('/')
+  };
 
 
   useEffect(() => {
@@ -49,7 +52,7 @@ function DesktopMenu() {
         {isAuthenticated? (
           <div className='logged-links user-links'>
             <Link to='/profile'>{isAuthenticated && ( <p>{user.name || user.email.split('@')[0]}</p> )}</Link>
-            <Link to='/logout'>Cerrar sesión</Link>
+            <button className='logout-button' onClick={handleLogOut}>Cerrar Sesion</button>
           </div>
         ) : (
           <div className='unlogged-links user-links'>

@@ -19,8 +19,7 @@ export const AuthProvider = ({ children }) => {
         setUser(response.data);
         setIsAuthenticated(true);
       }
-    }
-    catch (error){
+    } catch (error){
       setUser(null);
       setIsAuthenticated(false);
 
@@ -33,11 +32,31 @@ export const AuthProvider = ({ children }) => {
         console.log('Error de conexion con el backend', error.message);
       }
         
-    }
-    finally {
+    } finally {
       setLoading(false);
     }
   };
+
+
+  const logOut = async() => {
+    try {
+      const response = await api.post('users-api/logout/')
+      
+      setUser(null);
+      setIsAuthenticated(false);
+
+    } catch (error) {
+      if (error.response) {
+        console.log('Datos de error de django', error.response.data);
+        console.log('status de error', error.status);
+      }
+      else {
+        console.log('Error de conexion con el backend', error.message);
+      }
+    }
+  }
+
+
 
   useEffect(() => {
     checkAuth();
@@ -45,7 +64,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
 	return (
-		<AuthContext.Provider value={{ user, isAuthenticated, loading, setUser, setIsAuthenticated, checkAuth }}>
+		<AuthContext.Provider value={{ user, isAuthenticated, loading, setUser, setIsAuthenticated, checkAuth, logOut}}>
 			{children}
 		</AuthContext.Provider>
 	);

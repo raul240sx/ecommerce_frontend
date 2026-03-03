@@ -1,6 +1,8 @@
 import useProducts from '../../hooks/useProducts';
 import ProductCard from '../../components/products/ProductCard';
 import { useAuth } from '../../context/AuthContext';
+import ProductHighlight from '../../components/products/ProductHighlight';
+import './HomePage.css'
 
 
 function HomePage() {
@@ -18,46 +20,37 @@ function HomePage() {
 
 
   return (
-    <div className="home-container">
-      <h1>Nuestros Productos</h1>
-      <div className='guitars'>
-        {loadingGuitars? 
-        ( <p>Cargando guitarras...</p>) : errorGuitars? ( <p>Error al cargar las guitarras</p> ) : (
-            guitars.map((guitar) => (
-              <ProductCard key={guitar.id} product={guitar} />
-            ))
-          )
-          
-        }
-        {console.log('el usuario es', user)}
+    <div className='home-container'>
+      <div className='home-content'>      
+        <h1>Productos Destacados</h1>
+        <div className='product-highlight'>
+          <ProductHighlight 
+            title="Guitarras"
+            products={guitars}
+            loading={loadingGuitars}
+            error={errorGuitars}
+          />
+        </div>          
+
+        <div className='product-highlight'>
+          <ProductHighlight 
+            title="Amplificadores"
+            products={amps}
+            loading={loadingAmps}
+            error={errorAmps}
+          />
+        </div>
+
+        <div className='product-highlight'>
+          <ProductHighlight 
+            title="Accesorios"
+            products={accessories}
+            loading={loadingAccessories}
+            error={errorAccessories}
+          />
+        </div>          
+
       </div>
-
-      <div className='amps'>
-        {loadingAmps? 
-        ( <p>Cargando amplificadores...</p>) : errorAmps? ( <p>Error al cargar los amplificadores</p> ) : (
-          <ul>
-            {amps.map((amp) => (
-              <li key={amp.id}>{amp.name}</li>
-
-            ))}
-          </ul>
-          ) 
-        }
-      </div>
-
-      <div className='accessories'>
-        {loadingAccessories? 
-        ( <p>Cargando accesorios...</p>) : errorAccessories? ( <p>Error al cargar los accesorios</p> ) : (
-          <ul>
-            {accessories.map((accessorie) => (
-              <li key={accessorie.id}>{accessorie.name}</li>
-
-            ))}
-          </ul>
-          ) 
-        }
-      </div>
-
     </div>
   );
 }

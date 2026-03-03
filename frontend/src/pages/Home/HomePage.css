@@ -1,0 +1,16 @@
+
+.home-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.home-content {
+    max-width: 1200px;
+}
+
+.product-highlight {
+    margin: 3rem 0;
+}
+

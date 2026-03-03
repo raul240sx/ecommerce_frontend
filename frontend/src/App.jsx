@@ -10,6 +10,7 @@ import VerifyEmailPage from './pages/Register/VerifyEmailPage';
 import PasswordRecoveryPage from './pages/Login/PasswordRecoveryPage';
 import AboutPage from './pages/about/AboutPage.jsx';
 import LegalPage from './pages/about/LegalPage.jsx';
+import ProductDetailPage from './pages/products/ProductDetailPage.jsx';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path='/about' element={<AboutPage />} />
           <Route path='/legal' element={<LegalPage />} />
+          <Route path='/product/:id' element={<ProductDetailPage/>} />
           {/* ... otras rutas que quieras que tengan Navbar y Footer */}
         </Route>
 

@@ -1,0 +1,65 @@
+.desktop-products {
+    display: flex;
+    gap: 1rem
+}
+
+.highlight-container h2 {
+    margin-bottom: 1rem;
+}
+
+.mobile-carrousel {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+}
+
+.carrousel-card {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.carr-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2.2rem;
+    height: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    background-color: rgba(255,255,255,0.8);
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+
+    
+.prev {
+    left: 8px;
+}
+
+.next {
+    right: 8px;
+}
+
+
+@media (max-width: 768px) {
+    .highlight-container h2 {
+        text-align: center;
+    }
+
+    .carrousel-card {
+        width: 100%;
+        max-width: 380px; 
+    }
+
+    .carrousel-card .product-card-container {
+        width: 100%;
+    }
+}

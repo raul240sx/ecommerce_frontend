@@ -105,7 +105,7 @@
     filter: brightness(1.15);
     cursor: pointer;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px var(--shadow);;
+    box-shadow: 0 5px 15px var(--shadow);
 }
 
 .submit-btn:disabled {

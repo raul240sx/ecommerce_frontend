@@ -45,7 +45,8 @@
 .buy-buttons {
     padding: 1rem;
     display: flex;
-    gap: 0.5rem;
+    gap: 2rem;
+    align-items: center;
 
 }
 
@@ -54,7 +55,6 @@
     background-color: var(--primary-color);
     color: var(--text-color);
     padding: 0.8rem;
-    margin-bottom: 1.5rem;
     border-radius: 0.4rem;
     transition: all 0.3s ease;
     font-size: 1.1rem; 
@@ -70,13 +70,49 @@
     box-shadow: 0 5px 15px var(--shadow);
 }
 
+.quantity-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 
+.quantity-section p {
+    color: var(--text-color);
+    font-weight: 300;
+}
+
+.quantity-button {
+    display: flex;
+    border: none;
+    background-color: transparent;
+}
+
+.quantity-icon {
+    height: 30px;
+    width: 30px;
+    fill: var(--primary-color);
+    
+}
+
+.detail-button:disabled {
+    background-color: darkgrey;
+}
+
+.detail-button:hover:disabled {
+    transform: none;
+    filter: none;
+    cursor:not-allowed;
+}
+
+.detail-errors {
+    max-width: 80%;
+    color: var(--error-color)
+}
 
 /* --- Estilos para Móvil --- */
 @media (max-width: 768px) {
     .product-detail-container {
         max-width: 100%;
-        
     }
 
     .detail-content {

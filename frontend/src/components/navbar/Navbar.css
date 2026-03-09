@@ -80,12 +80,15 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    
-    /* IGUAL QUE EL BURGER: */
     padding: 12px;
     border-radius: 50%;
-    color: var(--primary-color); /* Aseguramos que el icono herede el naranja */
+    color: var(--primary-color);
     transition: background-color 0.2s ease;
+}
+
+.cart-container a {
+    text-decoration: none;
+    color: var(--primary-color);
 }
 
 

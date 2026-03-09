@@ -51,7 +51,7 @@ function Navbar() {
             
             
             <div className='cart-container'>
-              <CartIcon/>
+              <Link to='/cart'><CartIcon/></Link>
             </div>
             
           </div>

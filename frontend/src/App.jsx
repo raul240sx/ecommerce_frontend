@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import MainLayout from './components/layouts/MainLayout.jsx';
 import ScrollToTop from './components/common/ScrollToTop.jsx'
 
-import RegisterPage from './pages/Register/RegisterPage';
-import LoginPage from './pages/Login/LoginPage';
-import HomePage from './pages/Home/HomePage';
-import VerifyEmailPage from './pages/Register/VerifyEmailPage';
-import PasswordRecoveryPage from './pages/Login/PasswordRecoveryPage';
+import RegisterPage from './pages/register/RegisterPage';
+import LoginPage from './pages/login/LoginPage';
+import HomePage from './pages/home/HomePage';
+import VerifyEmailPage from './pages/register/VerifyEmailPage';
+import PasswordRecoveryPage from './pages/login/PasswordRecoveryPage';
 import AboutPage from './pages/about/AboutPage.jsx';
 import LegalPage from './pages/about/LegalPage.jsx';
 import ProductDetailPage from './pages/products/ProductDetailPage.jsx';

@@ -23,7 +23,7 @@ export function CartProvider({ children }) {
           findItem = true;
           return {
             ...item,
-            quantity: (item.quantity + newItem.quantity)
+            quantity: newItem.quantity > 0? Math.min(item.quantity + newItem.quantity, item.stock) : item.quantity
           }
         }
         else {
@@ -51,8 +51,9 @@ export function CartProvider({ children }) {
     setCart((prevCart) => {
       const updatedCart = prevCart.map((item) => {
         if (item.product_id === idToUpdate) {
-          const validateQuantity = (newQuantity >=1)? newQuantity : 1
-          return {...item, quantity: validateQuantity};
+          const validatedQuantity = Math.min(Math.max(1, newQuantity), item.stock)
+          
+          return {...item, quantity: validatedQuantity};
         }
         return item;
       })

@@ -84,12 +84,10 @@
     border-radius: 50%;
     color: var(--primary-color);
     transition: background-color 0.2s ease;
+    text-decoration: none;
 }
 
-.cart-container a {
-    text-decoration: none;
-    color: var(--primary-color);
-}
+
 
 
 .burger-btn {

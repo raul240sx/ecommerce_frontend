@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom'; 
 import { useEffect, useRef, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 
 
 function DesktopMenu() {
+  const navigate = useNavigate()
   const { user, isAuthenticated, logOut} = useAuth();
   const [categoryMenu, setCategoryMenu] = useState(false);
   const menuRef = useRef(null);
@@ -13,7 +14,7 @@ function DesktopMenu() {
   }
 
   const handleLogOut = async() => {
-    await logOut();
+    logOut();
     navigate('/')
   };
 

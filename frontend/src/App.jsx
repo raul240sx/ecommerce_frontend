@@ -11,6 +11,8 @@ import PasswordRecoveryPage from './pages/login/PasswordRecoveryPage';
 import AboutPage from './pages/about/AboutPage.jsx';
 import LegalPage from './pages/about/LegalPage.jsx';
 import ProductDetailPage from './pages/products/ProductDetailPage.jsx';
+import CartPage from './pages/cart/CartPage.jsx';
+import CartCheckoutPage from './pages/cart/CartCheckoutPage.jsx';
 
 
 function App() {
@@ -24,6 +26,9 @@ function App() {
           <Route path='/about' element={<AboutPage />} />
           <Route path='/legal' element={<LegalPage />} />
           <Route path='/product/:id' element={<ProductDetailPage/>} />
+          <Route path='/cart' element={<CartPage/>} />
+          <Route path='/checkout' element={<CartCheckoutPage/>} />
+
           {/* ... otras rutas que quieras que tengan Navbar y Footer */}
         </Route>
 

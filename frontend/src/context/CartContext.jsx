@@ -51,7 +51,7 @@ export function CartProvider({ children }) {
     setCart((prevCart) => {
       const updatedCart = prevCart.map((item) => {
         if (item.product_id === idToUpdate) {
-          const validatedQuantity = Math.min(Math.max(1, newQuantity), item.stock)
+          const validatedQuantity = Math.min(Math.max(1, item.quantity + newQuantity), item.stock)
           
           return {...item, quantity: validatedQuantity};
         }

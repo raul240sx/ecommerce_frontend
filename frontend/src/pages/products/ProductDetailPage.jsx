@@ -21,9 +21,9 @@ function ProductDetailPage () {
   const [ image, setImage ] = useState(notFoundImg);
   const [ price, setPrice ] = useState(0);
   const [ quantity, setQuantity ] = useState(1);
-  const [ stockError, setStockError ] = useState(false)
-  const [ outOfStock, setOutOfStock ] = useState(false)
-  const [ itemQuantityCart, setItemQuantityCart ] = useState(0)
+  const [ stockError, setStockError ] = useState(false);
+  const [ outOfStock, setOutOfStock ] = useState(false);
+  const [ itemQuantityCart, setItemQuantityCart ] = useState(0);
 
   useEffect(() => {
     const itemInCart = cart.find(item => item.product_id === product?.id)

@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import api from '../../api/axios';
 import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
-import { PlusSquareIcon, MinusSquareIcon, CircleXIcon } from '../../components/common/Icons';
 import CartPageMobile from './CartPageMobile';
 import CartPageDesktop from './CartPageDesktop';
 import './CartPage.css'
@@ -73,12 +72,13 @@ function CartPage() {
               <div className='unit-price-column'><p>Precio Unitario</p></div>
               <div className='subtotal-price-column'><p>Sub total</p></div>
               <div className='delete-item-column'></div>
+              <hr />
             </div> }
 
             <div className='table-content'>
               {cart.map(((item, index) => (
                 isMobile? <CartPageMobile key={item.product_id} item={item} updateQuantity={updateQuantity} removeFromCart={removeFromCart} lastItemId={lastItemId} itemIndex={index}/> :
-                <CartPageDesktop key={item.product_id} item={item} updateQuantity={updateQuantity} removeFromCart={removeFromCart} />
+                <CartPageDesktop key={item.product_id} item={item} updateQuantity={updateQuantity} removeFromCart={removeFromCart} lastItemId={lastItemId} itemIndex={index}/>
               )))}
             </div>
             

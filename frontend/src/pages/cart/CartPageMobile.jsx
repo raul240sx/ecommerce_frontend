@@ -7,6 +7,8 @@ const formatter = new Intl.NumberFormat('es-CL', {
 
 function CartPageMobile({ item, updateQuantity, removeFromCart, lastItemId, itemIndex}) {
   const finalItem = itemIndex === lastItemId;
+  const disableAdd = item.quantity >= item.stock;
+	const disableRemove = item.quantity <= 1;
 
 
 
@@ -15,7 +17,9 @@ function CartPageMobile({ item, updateQuantity, removeFromCart, lastItemId, item
       <div className='name-column-mobile'><p>{item.name}</p></div>
       <div className='product-summarize'>
         <div className='img-delete-button'>
-          <img src={item.image} alt={item.name} className='img-mobile'/>
+          <div className='img-container-mobile'>
+            <img src={item.image} alt={item.name} className='img-mobile'/>
+          </div>
           <button onClick={() => removeFromCart(item.product_id)} id='remove-item-mobile'>Eliminar</button>
         </div>
         <div className='price-controls-mobile'>
@@ -24,9 +28,9 @@ function CartPageMobile({ item, updateQuantity, removeFromCart, lastItemId, item
             <div className='subtotal-price-column'><p> Subtotal: {formatter.format(item.price * item.quantity)}</p></div>
           </div>
           <div className='cart-controls-mobile'>
-            <button onClick={() => updateQuantity(item.product_id, -1)}><MinusSquareIcon className='control-button'/></button>
+            <button disabled={disableRemove}onClick={() => updateQuantity(item.product_id, -1)}><MinusSquareIcon className='control-button'/></button>
             <p>{item.quantity}</p>
-            <button onClick={() => updateQuantity(item.product_id, 1)}><PlusSquareIcon className='control-button'/></button>
+            <button disabled={disableAdd} onClick={() => updateQuantity(item.product_id, 1)}><PlusSquareIcon className='control-button'/></button>
           </div>
         </div>
       </div>

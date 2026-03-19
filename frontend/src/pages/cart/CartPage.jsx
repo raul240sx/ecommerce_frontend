@@ -42,8 +42,9 @@ function CartPage() {
     
     try{
       const response = await api.post('/orders-api/order-create/', payload);
+      const orderId = response.data.order.id;
       clearCart();
-      navigate('/checkout');
+      navigate(`/checkout/${orderId}`);
       console.log('respuesta exitosa',response.data);
     }
     catch(error){

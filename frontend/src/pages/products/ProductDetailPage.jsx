@@ -14,7 +14,7 @@ const formatter = new Intl.NumberFormat('es-CL', {
   });
 
 function ProductDetailPage () {
-  const { cart, addToCart, clearCart } = useCart();
+  const { cart, addToCart } = useCart();
   const { id } = useParams();
   const [ loading, setLoading ] = useState(true);
   const [ product, setProduct ] = useState(null);

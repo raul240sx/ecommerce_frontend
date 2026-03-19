@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { PlusSquareIcon, MinusSquareIcon, CircleXIcon } from '../../components/common/Icons';
 
 const formatter = new Intl.NumberFormat('es-CL', {

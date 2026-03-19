@@ -12,7 +12,11 @@ import AboutPage from './pages/about/AboutPage.jsx';
 import LegalPage from './pages/about/LegalPage.jsx';
 import ProductDetailPage from './pages/products/ProductDetailPage.jsx';
 import CartPage from './pages/cart/CartPage.jsx';
-import CartCheckoutPage from './pages/cart/CartCheckoutPage.jsx';
+import CheckoutPage from './pages/cart/CheckoutPage.jsx';
+import PaymentSuccessPage from './pages/payment/PaymentSuccessPage.jsx';
+import PaymentFailurePage from './pages/payment/PaymentFailurePage.jsx';
+import PaymentPendingPage from './pages/payment/PaymentPendingPage.jsx';
+import ProtectedRoute from './components/common/ProtectedRoute.jsx';
 
 
 function App() {
@@ -27,7 +31,15 @@ function App() {
           <Route path='/legal' element={<LegalPage />} />
           <Route path='/product/:id' element={<ProductDetailPage/>} />
           <Route path='/cart' element={<CartPage/>} />
-          <Route path='/checkout' element={<CartCheckoutPage/>} />
+          <Route path='/success' element={<PaymentSuccessPage/>} />
+          <Route path='/failure' element={<PaymentFailurePage/>} />
+          <Route path='/pending' element={<PaymentPendingPage/>} />
+          
+          <Route element={<ProtectedRoute/>}>
+            <Route path='/checkout/:orderId' element={<CheckoutPage/>} />
+          </Route>
+
+          
 
           {/* ... otras rutas que quieras que tengan Navbar y Footer */}
         </Route>

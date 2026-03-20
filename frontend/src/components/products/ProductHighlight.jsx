@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import { ArrowLeftIcon, ArrowRightIcon } from '../common/Icons';
 import './ProductHighlight.css'
 
-function ProductHighlight({ title, products }) {
+function ProductHighlight({ title, products, categoryId }) {
   const [ currentIndex, setCurrentIndex ] = useState(0);
 	const [ isMobile, setIsMobile ] = useState(window.innerWidth <= 768);
 
@@ -51,7 +52,14 @@ function ProductHighlight({ title, products }) {
 
 	return(
 		<div className='highlight-container'>
-			<h2>{title}</h2>
+			<div>
+
+			</div>
+			<div className='highlight-title-category'>
+				<h2>{title}</h2>
+				<Link to={`/products/categories/${categoryId}`} className='view-categorie-btn' >Ver más</Link>
+			</div>
+			
 			{
 				isMobile?(
 					<div className='mobile-carrousel'>

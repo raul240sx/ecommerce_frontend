@@ -1,16 +1,17 @@
 import useProducts from '../../hooks/useProducts';
-import ProductCard from '../../components/products/ProductCard';
-import { useAuth } from '../../context/AuthContext';
 import ProductHighlight from '../../components/products/ProductHighlight';
-import './HomePage.css'
+import hero from '../../assets/hero.jpg';
+import heroMobile from '../../assets/hero-mobile.jpg';
+import './HomePage.css';
 
 
 function HomePage() {
-  const {user} = useAuth();
-
-  const { products: guitars, loading: loadingGuitars, error: errorGuitars } = useProducts({ category: 1, limit: 4 });
-  const { products : amps, loading: loadingAmps, error: errorAmps } = useProducts({ category: 2, limit: 4})
-  const { products: accessories, loading: loadingAccessories, error: errorAccessories } = useProducts({ category: 3, limit:4 })
+  const guitarsCategory = 1;
+  const amplifiersCategory = 2;
+  const accessoriesCategories = 3;
+  const { products: guitars, loading: loadingGuitars, error: errorGuitars } = useProducts({ category: guitarsCategory, limit: 4 });
+  const { products : amps, loading: loadingAmps, error: errorAmps } = useProducts({ category: amplifiersCategory, limit: 4})
+  const { products: accessories, loading: loadingAccessories, error: errorAccessories } = useProducts({ category: accessoriesCategories, limit:4 })
 
   const loading = loadingGuitars || loadingAmps || loadingAccessories;
   const error = errorGuitars || errorAmps || errorAccessories;
@@ -21,32 +22,34 @@ function HomePage() {
 
   return (
     <div className='home-container'>
-      <div className='home-content'>      
-        <h1>Productos Destacados</h1>
+      <div className='home-hero'>
+        <img src={hero} alt='hero' className='hero-img' />
+        <img src={heroMobile} alt='hero-mobile' className='hero-img-mobile'/>
+      </div>
+      <div className='home-content'>
+        <h1 className='home-title'>Bienvenido a la mejor tienda <span>para guitarristas</span></h1>      
+        <h2 className='highlight-title'>Productos Destacados</h2>
         <div className='product-highlight'>
           <ProductHighlight 
-            title="Guitarras"
+            title='Guitarras'
             products={guitars}
-            loading={loadingGuitars}
-            error={errorGuitars}
+            categoryId={guitarsCategory}
           />
         </div>          
 
         <div className='product-highlight'>
           <ProductHighlight 
-            title="Amplificadores"
+            title='Amplificadores'
             products={amps}
-            loading={loadingAmps}
-            error={errorAmps}
+            categoryId={amplifiersCategory}
           />
         </div>
 
         <div className='product-highlight'>
           <ProductHighlight 
-            title="Accesorios"
+            title='Accesorios'
             products={accessories}
-            loading={loadingAccessories}
-            error={errorAccessories}
+            categoryId={accessoriesCategories}
           />
         </div>          
 

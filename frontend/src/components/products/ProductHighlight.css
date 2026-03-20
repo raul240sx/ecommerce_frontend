@@ -3,17 +3,33 @@
     gap: 1rem
 }
 
-.highlight-container h2 {
+.highlight-title-category {
+    display: flex;
+    align-items:baseline;
+    gap: 1rem;
     margin-bottom: 1rem;
 }
+
+
+.view-categorie-btn {
+    cursor: pointer;
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.view-categorie-btn:hover {
+    filter: brightness(1.15);
+    cursor: pointer;
+    transform: translateY(-2px);
+}
+
 
 .mobile-carrousel {
     max-width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-
 }
 
 .carrousel-card {
@@ -62,4 +78,8 @@
     .carrousel-card .product-card-container {
         width: 100%;
     }
+
+    .highlight-title-category {
+        margin-left: 4rem;
+}
 }

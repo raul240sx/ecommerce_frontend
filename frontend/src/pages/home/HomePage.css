@@ -2,15 +2,73 @@
 .home-container {
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    margin: 2rem 0;
+    align-items: center;
+    margin-bottom: 2rem;
 }
 
 .home-content {
     max-width: 1200px;
 }
 
+.highlight-title {
+    margin-top: 2rem;
+    font-size: xx-large;
+}
+
+.home-title {
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    font-weight: 700;
+    color: var(--text-color);
+    text-align: center;
+    margin: 2rem auto;
+    max-width: 600px;
+    line-height: 1.3;
+}
+
+.home-title span {
+    color: var(--primary-color);
+}
+
 .product-highlight {
     margin: 3rem 0;
+}
+
+.home-hero {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.home-hero {
+    max-height: 450px;
+    overflow: hidden; /* 🔥 clave para cortar lo que sobra */
+}
+
+.hero-img,
+.hero-img-mobile {
+    width: 100%;       /* ocupa todo el ancho */
+    height: 450px;    
+    object-fit: cover; 
+}
+
+.hero-img-mobile {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .hero-img {
+        display: none;
+    }
+
+    .hero-img-mobile {
+        display: block;
+    }
+
+    .highlight-title {
+        display: flex;
+        justify-content: center;
+    }
 }
 

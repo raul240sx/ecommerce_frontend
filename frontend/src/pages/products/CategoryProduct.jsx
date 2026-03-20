@@ -59,7 +59,7 @@ function CategoryProducts() {
 
 	return (
 		<div className='category-products-container'>
-			<h1 className='category-title'>{categoryName}</h1>
+			<h1 className='category-title'>Categorías - {categoryName}</h1>
 			<div className='category-products-content'>
 				{loading?
 				<div className='loading-section'>

@@ -64,9 +64,9 @@ function MobileMenuMultilevel({ isOpen, closeMenu }) {
                 <BackArrowIcon/>
               </button>
               
-              <Link to='/categories/guitars' onClick={closeMenu}>Guitarras</Link>
-              <Link to='/categories/amplifiers' onClick={closeMenu}>Amplificadores</Link>
-              <Link to='/categories/accesories' onClick={closeMenu}>Accesorios</Link>
+              <Link to={`/products/categories/${1}`} onClick={closeMenu}>Guitarras</Link>
+              <Link to={`/products/categories/${2}`} onClick={closeMenu}>Amplificadores</Link>
+              <Link to={`/products/categories/${3}`} onClick={closeMenu}>Accesorios</Link>
             </div>
           ) }
           

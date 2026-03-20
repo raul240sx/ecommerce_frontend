@@ -3,9 +3,10 @@ import getProducts from '../api/productService';
 
 
 function useProducts(params = {}) {
-    const [products, setProducts] = useState([])
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(null)
+    const [ products, setProducts ] = useState([]);
+    const [ loading, setLoading ] = useState(true);
+    const [ error, setError ] = useState(null);
+    const [ totalProducts, setTotalProducts ] = useState(null);
 
     useEffect(() => {
 
@@ -16,6 +17,7 @@ function useProducts(params = {}) {
                 const data = await getProducts(params);
                 setProducts(data.results || data);
                 setError(null);
+                setTotalProducts(data.count)
 
             } catch (error) {
                 setError(error);
@@ -28,9 +30,9 @@ function useProducts(params = {}) {
         fetchProducts();
     
 
-    }, []);
+    }, [params.category, params.limit, params.offset]);
 
-    return { products, loading, error };
+    return { products, loading, error, totalProducts };
     
 };
 

@@ -41,9 +41,9 @@ function DesktopMenu() {
           <button className='dropdown-trigger' onClick={handleMenu}>Categorías</button>
           {categoryMenu && (
           <div className='category-links'>
-            <Link to='/categories/guitars' onClick={handleMenu}>Guitarras</Link>
-            <Link to='/categories/amplifiers' onClick={handleMenu}>Amplificadores</Link>
-            <Link to='/categories/accesories' onClick={handleMenu}>Accesorios</Link>
+            <Link to={`/products/categories/${1}`} onClick={handleMenu}>Guitarras</Link>
+            <Link to={`/products/categories/${2}`} onClick={handleMenu}>Amplificadores</Link>
+            <Link to={`/products/categories/${3}`} onClick={handleMenu}>Accesorios</Link>
           </div>
           )}
 

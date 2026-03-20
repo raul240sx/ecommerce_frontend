@@ -17,6 +17,7 @@ import PaymentSuccessPage from './pages/payment/PaymentSuccessPage.jsx';
 import PaymentFailurePage from './pages/payment/PaymentFailurePage.jsx';
 import PaymentPendingPage from './pages/payment/PaymentPendingPage.jsx';
 import ProtectedRoute from './components/common/ProtectedRoute.jsx';
+import CategoryProducts from './pages/products/CategoryProduct.jsx';
 
 
 function App() {
@@ -30,10 +31,12 @@ function App() {
           <Route path='/about' element={<AboutPage />} />
           <Route path='/legal' element={<LegalPage />} />
           <Route path='/product/:id' element={<ProductDetailPage/>} />
+          <Route path='/products/categories/:categoryId' element={<CategoryProducts/>} />
           <Route path='/cart' element={<CartPage/>} />
           <Route path='/success' element={<PaymentSuccessPage/>} />
           <Route path='/failure' element={<PaymentFailurePage/>} />
           <Route path='/pending' element={<PaymentPendingPage/>} />
+          
           
           <Route element={<ProtectedRoute/>}>
             <Route path='/checkout/:orderId' element={<CheckoutPage/>} />

@@ -17,19 +17,22 @@ api.interceptors.response.use(
   async(error) => {
     const originalRequest = error.config;
 
-    if ((error.response?.status === 401 || error.response?.status === 403) && !originalRequest._retry) {
-      if (originalRequest.url.includes('users-api/me/') || originalRequest.url.includes('users-api/login/')) {
-        return Promise.reject(error);
-      }
+    if (originalRequest.url.includes('users-api/login/')){
+      return Promise.reject(error);
+    }
 
+    if ((error.response?.status === 401 || error.response?.status === 403) && !originalRequest._retry) {
       originalRequest._retry = true;
 
       try {
+        console.log('estoy reintentando el refresh')
         await axios.post('https://api.guitarzone.cl/users-api/token/refresh/', {}, { withCredentials: true });
 
         return api(originalRequest);
 
       } catch (refreshError) {
+        console.error('Sesión expirada por completo. Redirigiendo...');
+        window.location.href = '/login';
         return Promise.reject(refreshError);
       }
     }

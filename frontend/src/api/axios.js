@@ -32,7 +32,10 @@ api.interceptors.response.use(
 
       } catch (refreshError) {
         console.error('Sesión expirada por completo. Redirigiendo...');
-        window.location.href = '/login';
+        if (!window.location.pathname.includes('/login') && 
+            !originalRequest.url.includes('users-api/me/')) {
+          window.location.href = '/login';
+        }
         return Promise.reject(refreshError);
       }
     }

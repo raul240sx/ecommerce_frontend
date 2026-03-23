@@ -1,4 +1,3 @@
-import './CheckoutPage.css'
 
 
 const formatter = new Intl.NumberFormat('es-CL', {
@@ -7,7 +6,7 @@ const formatter = new Intl.NumberFormat('es-CL', {
   });
 
 
-function CheckoutPageMobile({ item, index, itemsLength }) {
+function OrderSummaryTableMobile({ item, index, itemsLength }) {
 	const isLastItem = (itemsLength === (index + 1))
 
 
@@ -36,4 +35,4 @@ function CheckoutPageMobile({ item, index, itemsLength }) {
 )
 };
 
-export default CheckoutPageMobile;
+export default OrderSummaryTableMobile;

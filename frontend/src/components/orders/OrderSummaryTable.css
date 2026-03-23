@@ -1,0 +1,115 @@
+.sum-table-titles,
+.sum-table-content {
+    display: grid;
+    grid-template-columns: 30px 80px 1fr 100px minmax(80px, 120px) minmax(80px, 120px);    
+    gap: 1rem;
+    align-items: center;
+}
+
+.sum-table-titles .sum-unit-price-column {
+    display: flex;
+    align-items: center;
+}
+
+.sum-item-number {
+    display: flex;
+    justify-content: center;
+}
+
+.sum-name-column {
+    padding-left: 1rem;
+}
+
+.sum-quantity-column {
+    display: flex;
+    justify-content: center;
+}
+
+.sum-unit-price-column,
+.sum-subtotal-price-column {
+    display: flex;
+    justify-content: start;
+}
+
+.summarize-table {
+    padding: 1rem 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.sum-table-content hr,
+.sum-table-titles hr {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+
+.sum-img-item {
+    width: 80px;
+    height: 80px;
+    display: flex;
+}
+
+.sum-img-item img {
+    object-fit: contain;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Vista Movil */
+
+.sum-items-content-mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem 0rem;
+    padding-bottom: 0;
+}
+
+.sum-top-info {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.3rem;
+}
+
+.sum-bottom-info {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.sum-left-info {
+    width: 80px;
+    height: 80px;
+    display: flex;
+}
+
+.sum-img-mobile {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.sum-item-title-mobile {
+    font-weight: 600;
+}
+
+@media (max-width:768px) {
+    .sum-table {
+        margin: 0 0.5rem;
+        margin-bottom: 1rem;
+        padding: 0 0.5rem;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+    }
+
+    .summarize-table{
+        border: none;
+        padding: 0 0;
+        box-shadow: none
+    }
+}

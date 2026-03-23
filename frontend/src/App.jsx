@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import MainLayout from './components/layouts/MainLayout.jsx';
 import ScrollToTop from './components/common/ScrollToTop.jsx'
 
-import RegisterPage from './pages/register/RegisterPage';
-import LoginPage from './pages/login/LoginPage';
-import HomePage from './pages/home/HomePage';
-import VerifyEmailPage from './pages/register/VerifyEmailPage';
-import PasswordRecoveryPage from './pages/login/PasswordRecoveryPage';
+import RegisterPage from './pages/register/RegisterPage.jsx';
+import LoginPage from './pages/login/LoginPage.jsx';
+import HomePage from './pages/home/HomePage.jsx';
+import VerifyEmailPage from './pages/register/VerifyEmailPage.jsx';
+import PasswordRecoveryPage from './pages/login/PasswordRecoveryPage.jsx';
 import AboutPage from './pages/about/AboutPage.jsx';
 import LegalPage from './pages/about/LegalPage.jsx';
 import ProductDetailPage from './pages/products/ProductDetailPage.jsx';
@@ -18,6 +18,13 @@ import PaymentFailurePage from './pages/payment/PaymentFailurePage.jsx';
 import PaymentPendingPage from './pages/payment/PaymentPendingPage.jsx';
 import ProtectedRoute from './components/common/ProtectedRoute.jsx';
 import CategoryProducts from './pages/products/CategoryProduct.jsx';
+import UserPageLayout from './components/layouts/UserPageLayout.jsx';
+import UserAddressesPage from './pages/user/UserAddressesPage.jsx';
+import UserConfigurationsPage from './pages/user/UserConfigurationsPage.jsx';
+import UserMyAccountPage from './pages/user/UserMyAccountPage.jsx';
+import UserOrdersPage from './pages/user/UserOrdersPage.jsx';
+import UserUpdateInfoPage from './pages/user/UserUpdateInfoPage.jsx';
+import OrderDetailPage from './pages/orders/OrderDetailPage.jsx';
 
 
 function App() {
@@ -40,6 +47,15 @@ function App() {
           
           <Route element={<ProtectedRoute/>}>
             <Route path='/checkout/:orderId' element={<CheckoutPage/>} />
+            <Route path='/order-detail/:orderId' element={<OrderDetailPage/>} />
+
+            <Route element={<UserPageLayout/>}>
+              <Route path='/my-account' element={<UserMyAccountPage/>} />
+              <Route path='/my-account/my-orders' element={<UserOrdersPage/>} />
+              <Route path='/my-account/my-addresses' element={<UserAddressesPage/>} />
+              <Route path='/my-account/update-info' element={<UserUpdateInfoPage/>} />
+              <Route path='/my-account/configurations' element={<UserConfigurationsPage/>} />
+            </Route>
           </Route>
 
           

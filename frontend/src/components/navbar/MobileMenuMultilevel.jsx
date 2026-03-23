@@ -43,7 +43,7 @@ function MobileMenuMultilevel({ isOpen, closeMenu }) {
      
               {isAuthenticated? (
                 <>
-                <Link to='/profile' onClick={closeMenu}>Mi perfil</Link>
+                <Link to='/my-account' onClick={closeMenu}>Mi perfil</Link>
                 <button className='nav-button' onClick={handleLogOut}>Cerrar Sesion</button>
                 </>
               ) : (

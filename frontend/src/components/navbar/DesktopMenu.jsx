@@ -52,7 +52,7 @@ function DesktopMenu() {
         
         {isAuthenticated? (
           <div className='logged-links user-links'>
-            <Link to='/profile'>{isAuthenticated && ( <p>{user.name || user.email.split('@')[0]}</p> )}</Link>
+            <Link to='/my-account'>{isAuthenticated && ( <p>{user.name || user.email.split('@')[0]}</p> )}</Link>
             <button className='logout-button' onClick={handleLogOut}>Cerrar Sesion</button>
           </div>
         ) : (

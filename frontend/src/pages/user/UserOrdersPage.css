@@ -1,0 +1,44 @@
+.orders-container {
+    width: 100%;
+}
+
+.orders-content {
+    display: flex;
+    gap: 1rem;
+}
+
+.orders-table-section {
+    flex: 8;
+}
+
+.orders-table {
+    background-color: var(--white);
+    padding: 2rem;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px var(--shadow);
+    
+}
+
+.orders-table-titles th {
+    padding-bottom: 1rem;
+}
+
+.orders-table-data td {
+    padding: 0.5rem 0;
+}
+
+.odd-row{
+    background-color: rgb(255, 153, 0, 0.7);
+
+}
+
+.orders-table-data td {
+    padding-left: 1rem;
+}
+
+.table-filters {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}

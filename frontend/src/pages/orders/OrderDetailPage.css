@@ -1,0 +1,64 @@
+
+.order-detail-container {
+    width: 100%;
+}
+
+.order-detail-content {
+    max-width: 1200px;
+    margin: 2rem auto;
+}
+
+.table-container {
+    margin: 0 2rem;
+}
+
+.order-detail-content h1 {
+    color: var(--text-color);
+    margin-bottom: 2rem;
+}
+
+
+.order-info {
+    margin: 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 25px var(--shadow);
+}
+
+.disable-checkout {
+    display: none;
+}
+
+.active-checkout {
+    display: flex;
+    justify-content: center;
+    margin: 3rem 0;
+}
+
+.active-checkout button {
+    display: block;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 1rem 4rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0.4rem;
+    transition: all 0.3s ease;
+    font-size: 1.1rem; 
+    font-weight: 600;  
+    border: none;    
+    cursor: pointer;
+    font-weight: 700;
+    font-size: larger;
+}
+
+
+@media (max-width:768px) {
+    .order-detail-title {
+        display: flex;
+        margin: 1rem 2rem;
+    }
+}

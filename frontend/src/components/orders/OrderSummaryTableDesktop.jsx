@@ -1,4 +1,3 @@
-import { useState } from 'react';
 
 
 const formatter = new Intl.NumberFormat('es-CL', {
@@ -7,7 +6,7 @@ const formatter = new Intl.NumberFormat('es-CL', {
   });
 
 
-function CheckoutPageDesktop({ item, index, itemsLength }) {
+function OrderSummaryTableDesktop({ item, index, itemsLength }) {
 	const isLastItem = (itemsLength === (index + 1))
 
 	return (
@@ -36,4 +35,4 @@ function CheckoutPageDesktop({ item, index, itemsLength }) {
 	)
 };
 
-export default CheckoutPageDesktop;
+export default OrderSummaryTableDesktop;

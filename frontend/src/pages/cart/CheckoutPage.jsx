@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 import api from '../../api/axios';
 import { useEffect, useState } from 'react';
-import CheckoutPageDesktop from './CheckoutPageDesktop';
-import CheckoutPageMobile from './CheckoutPageMobile';
+import OrderSummaryTable from '../../components/orders/OrderSummaryTable';
+import './CheckoutPage.css'
 
 
 
@@ -90,25 +90,7 @@ function CartCheckoutPage() {
 			<div className='checkout-content'>
 				<h1>Checkout</h1>
 				<h2>Id de orden N° {order.id}</h2>
-				<div className='summarize-table'>
-					{!isMobile &&
-						<div className='sum-table-titles'>
-							<div className='sum-item-number'>N°</div>
-							<div className='sum-img-column'></div>
-							<div className='sum-name-column'><p>Producto</p></div>
-							<div className='sum-quantity-column'><p>Cantidad</p></div>
-							<div className='sum-unit-price-column'><p>Precio Unitario</p></div>
-							<div className='sum-subtotal-price-column'><p>Sub total</p></div>
-							<hr />
-						</div>
-					 }
-					<div className='sum-table'>
-						{order.order_items.map((item, index) => (
-							isMobile? <CheckoutPageMobile key={item.product_id} item={item} index={index} itemsLength={order.order_items.length}/> :
-							<CheckoutPageDesktop key={item.product_id} item={item} index={index} itemsLength={order.order_items.length}/>
-						))}
-					</div>
-				</div>
+				<OrderSummaryTable order={order}/>
 				
 				<div className='direction-container'>
 					<p>Dirección para el envío</p>

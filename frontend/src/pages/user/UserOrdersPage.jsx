@@ -55,32 +55,33 @@ function UserOrders() {
           </table>
         </div>
         <div className='table-filters'>
-          <label htmlFor='items'>Filtar por estado:</label>
-          <select 
-          value={currentStatus}
-          onChange={(e) => updateFilters({ status: e.target.value, limit:5 })}>
-            <option value=''>Todos</option>
-            <option value='PAID'>PAGADOS</option>
-            <option value='PENDING'>PENDIENTES</option>
-            <option value='CANCELLED'>CANCELADOS</option>
-          </select>
-          <div className="sorting-buttons">
+          <div className='state-filter'>
+            <label htmlFor='items'>Filtar por estado:</label>
+            <select 
+            value={currentStatus}
+            onChange={(e) => updateFilters({ status: e.target.value})}>
+              <option value=''>Todos</option>
+              <option value='PAID'>PAGADOS</option>
+              <option value='PENDING'>PENDIENTES</option>
+              <option value='CANCELLED'>CANCELADOS</option>
+            </select>
+          </div>
+          
+          <div className='sorting-buttons'>
             <span>Ordenar por monto:</span>
-            <button 
-              className={currentOrdering === 'total_amount' ? 'active' : ''}
-              onClick={() => updateFilters({ ordering: 'total_amount' })}
-            >
-              Menor a Mayor
-            </button>
-            <button 
-              className={currentOrdering === '-total_amount' ? 'active' : ''}
-              onClick={() => updateFilters({ ordering: '-total_amount' })}
-            >
-              Mayor a Menor
-            </button>
+            <div className='sorting-btn-container'>
+              <button 
+                className={`filter-btn ${currentOrdering === 'total_amount' ? 'active' : ''}`} onClick={() => updateFilters({ ordering: 'total_amount' })}>
+                Menor a Mayor
+              </button>
+              <button 
+                className={`filter-btn ${currentOrdering === '-total_amount' ? 'active' : ''}`} onClick={() => updateFilters({ ordering: '-total_amount' })}>
+                Mayor a Menor
+              </button>
+            </div> 
           </div>
 
-          <button onClick={() => updateFilters({ ordering: '', status: '', limit: '' })}>
+          <button className='filter-btn' onClick={() => updateFilters({ ordering: '', status: '', limit: '' })}>
             Limpiar todos los filtros
           </button>
         </div>

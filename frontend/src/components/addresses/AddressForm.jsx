@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import api from '../../api/axios';
 import './AddressForm.css'
 
-function AddressForm({ onSuccess, onCancel }) {
+function AddressForm({ addressToEdit, onSuccess, onCancel }) {
   const [ regions, setRegions ] = useState([]);
   const [ communes, setCommunes ] = useState([]);
   const [ selectedZone, setSelectedZone ] = useState('');
@@ -12,7 +12,13 @@ function AddressForm({ onSuccess, onCancel }) {
   const [ loadingCommunes, setLoadingCommunes ] = useState(false);
   const [ isSubmitting, setIsSubmitting ] = useState(false);
   const [ formErrors, setFormErrors ] = useState('');
-  const [ addressForm, setAddressForm ] = useState({
+  const [ addressForm, setAddressForm ] = useState(
+    addressToEdit? 
+    {
+      street: addressToEdit.street,
+      number: addressToEdit.number,
+      apartment: addressToEdit.apartment || '',
+    } : {
     street: '',
     number: '',
     apartment: '',
@@ -97,27 +103,55 @@ function AddressForm({ onSuccess, onCancel }) {
       commune: selectedCommune,
     }
 
-    try {
-      setIsSubmitting(true)
-      const response = await api.post('users-api/addresses/', payload);
-      if (onSuccess) {
-        onSuccess(response.data);
-      }
-      setAddressForm({
-        street: '',
-        number: '',
-        apartment: '',
-      });
-      setSelectedZone('');
+    if (addressToEdit) {
+      try {
+        setIsSubmitting(true)
+        const response = await api.patch(`users-api/addresses/${addressToEdit.id}/`, payload);
+        if (onSuccess) {
+          onSuccess(response.data);
+        }
+        setAddressForm({
+          street: '',
+          number: '',
+          apartment: '',
+        });
+        setSelectedZone('');
 
-    } catch (error) {
-      if (error.response && error.response.status === 400){
-        console.log(error.response);
-        setFormErrors(error.response.data);
+      } catch (error) {
+        if (error.response && error.response.status === 400){
+          console.log(error.response);
+          setFormErrors(error.response.data);
+        }
+      
+      } finally {
+        setIsSubmitting(false)
       }
-    
-    } finally {
-      setIsSubmitting(false)
+
+    }
+
+    else{
+      try {
+        setIsSubmitting(true)
+        const response = await api.post('users-api/addresses/', payload);
+        if (onSuccess) {
+          onSuccess(response.data);
+        }
+        setAddressForm({
+          street: '',
+          number: '',
+          apartment: '',
+        });
+        setSelectedZone('');
+
+      } catch (error) {
+        if (error.response && error.response.status === 400){
+          console.log(error.response);
+          setFormErrors(error.response.data);
+        }
+      
+      } finally {
+        setIsSubmitting(false)
+      }
     }
 
   }
@@ -226,7 +260,7 @@ function AddressForm({ onSuccess, onCancel }) {
       
       <div className='form-btn'>
         <button id='cancel-address-button' type='button' onClick={onCancel}>Cancelar</button>
-        <button id='submit-address-button' type='submit' disabled={handleDisableSubmitBtn()}>Crear dirección</button>
+        <button id='submit-address-button' type='submit' disabled={handleDisableSubmitBtn()}> {addressToEdit? 'Guardar cambios' : 'Crear dirección'}</button>
       </div>
     </form>
 

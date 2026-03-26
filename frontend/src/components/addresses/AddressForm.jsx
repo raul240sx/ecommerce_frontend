@@ -5,8 +5,8 @@ import './AddressForm.css'
 function AddressForm({ addressToEdit, onSuccess, onCancel }) {
   const [ regions, setRegions ] = useState([]);
   const [ communes, setCommunes ] = useState([]);
-  const [ selectedZone, setSelectedZone ] = useState('');
-  const [ selectedRegion, setSelectedRegion ] = useState('');
+  const [ selectedZone, setSelectedZone ] = useState ('');
+  const [ selectedRegion, setSelectedRegion ] = useState('')
   const [ selectedCommune, setSelectedCommune ] = useState('');
   const [ loadingRegions, setLoadingRegions ] = useState(false);
   const [ loadingCommunes, setLoadingCommunes ] = useState(false);
@@ -23,6 +23,37 @@ function AddressForm({ addressToEdit, onSuccess, onCancel }) {
     number: '',
     apartment: '',
   });
+
+
+  useEffect(() => {
+    if (addressToEdit) {
+      const fetchEditRegion = async() => {
+        setLoadingRegions(true);
+        try {
+          const response = await api.get(`users-api/locations/communes/${addressToEdit.commune}/`)
+          setSelectedZone(response.data.region.zone);
+          setSelectedRegion(response.data.region.id);
+          setSelectedCommune(response.data.id);
+          console.log('las regiones de la zona son', regions)
+          
+        } catch (error) {
+          console.log(error.response);
+
+        } finally {
+          setLoadingRegions(false);
+        }
+
+      }
+      fetchEditRegion();
+    }
+    else {
+    }
+
+
+  }, [addressToEdit]);
+
+
+
   
   const handleChangeForm = (e) => {
     const { name, value } = e.target
@@ -37,8 +68,7 @@ function AddressForm({ addressToEdit, onSuccess, onCancel }) {
 
 /* Selector de region */
   useEffect(() => {
-    setSelectedRegion('')
-    setSelectedCommune('')
+
     
 
     const fetchRegions = async() => {
@@ -66,7 +96,7 @@ function AddressForm({ addressToEdit, onSuccess, onCancel }) {
 
 /* Selector de comuna */
   useEffect(() => {
-    setSelectedCommune('')
+
  
 
     const fetchCommunes = async() => {
@@ -216,7 +246,7 @@ function AddressForm({ addressToEdit, onSuccess, onCancel }) {
             <select
             name='zone'
             id='address-zone'
-            onChange={(e) => setSelectedZone(e.target.value)}
+            onChange={(e) => {setSelectedZone(e.target.value); setSelectedRegion(''); setSelectedCommune('');}}
             value={selectedZone}>
               <option value=''>Selecciona zona</option>
               <option value='NORTH'>Norte</option>
@@ -230,7 +260,7 @@ function AddressForm({ addressToEdit, onSuccess, onCancel }) {
             <select
             name='region'
             id='address-region'
-            onChange={(e) => setSelectedRegion(e.target.value)}
+            onChange={(e) => {setSelectedRegion(e.target.value); setSelectedCommune('');}}
             value={selectedRegion}
             disabled={!selectedZone} >
               <option value=''>Selecciona Región</option>

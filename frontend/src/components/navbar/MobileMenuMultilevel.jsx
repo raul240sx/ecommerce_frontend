@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { Link, useNavigate } from 'react-router-dom'; 
+import { Link, useNavigate, useLocation } from 'react-router-dom'; 
 
 import { handleScrollToTop } from '../../utils/ScrollUtils';
 
@@ -11,11 +11,19 @@ function MobileMenuMultilevel({ isOpen, closeMenu }) {
   const { user, isAuthenticated, logOut } = useAuth();
   const [ levelMenu, setLevelMenu ] = useState(0);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    if (!isOpen) {
-      setLevelMenu(0);
+    if (isOpen) {
+      if (location.pathname.startsWith('/my-account')) {
+      setLevelMenu(2)
+      }
+      else {
+        setLevelMenu(0);
+      }
+
     }
+    
   }, [isOpen]);
 
   const handleLogOut = async() => {
@@ -43,7 +51,7 @@ function MobileMenuMultilevel({ isOpen, closeMenu }) {
      
               {isAuthenticated? (
                 <>
-                <Link to='/my-account' onClick={closeMenu}>Mi perfil</Link>
+                <button className='nav-button' onClick={() => {setLevelMenu(2)}}>Mi perfil</button>
                 <button className='nav-button' onClick={handleLogOut}>Cerrar Sesion</button>
                 </>
               ) : (
@@ -68,6 +76,22 @@ function MobileMenuMultilevel({ isOpen, closeMenu }) {
               <Link to={`/products/categories/${2}`} onClick={closeMenu}>Amplificadores</Link>
               <Link to={`/products/categories/${3}`} onClick={closeMenu}>Accesorios</Link>
             </div>
+          ) }
+
+          { (levelMenu === 2) && (
+            <div className='third-menu submenu'>
+              <button onClick={() => setLevelMenu(0)} className='return-button'>
+                <BackArrowIcon/>
+              </button>
+
+              <Link to={'/my-account'} onClick={closeMenu} >Información</Link>
+              <Link to={'/my-account/my-orders'} onClick={closeMenu} >Mis Ordenes</Link>
+              <Link to={'/my-account/my-addresses'} onClick={closeMenu} >Mis Direcciones</Link>
+              <Link to={'/my-account/update-info'} onClick={closeMenu} >Actualizar información</Link>
+              <Link to={'/my-account/configurations'} onClick={closeMenu} >Configuraciones</Link>
+
+            </div>
+
           ) }
           
 

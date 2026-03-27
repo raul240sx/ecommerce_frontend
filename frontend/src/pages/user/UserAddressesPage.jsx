@@ -1,15 +1,18 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import api from '../../api/axios.js';
 import AddressForm from '../../components/addresses/AddressForm.jsx';
 import './UserAddressesPage.css'
 import { CircleXIcon, EditIcon, PlusSquareIcon } from '../../components/common/Icons.jsx';
 
 function UserAddresses() {
+  const [ searchParams, setSearchParams ] = useSearchParams();
   const [ addresses, setAddresses ] = useState([]);
   const [ loadingAddresses, setLoadingAddresses ] = useState(true);
-  const [ showForm, setShowForm ] = useState(false);
-  const showlist = !showForm 
-  const [ addressToEdit, setAddresToEdit ] = useState(null);
+  const showForm = searchParams.get('action') === 'new' || searchParams.get('action') === 'edit';
+  const showlist = !showForm;
+  const idToEdit = searchParams.get('id');
+  const addressToEdit = idToEdit? addresses?.find(a => (a.id === parseInt(idToEdit))) : null;
 
 
   useEffect(() => {
@@ -30,9 +33,11 @@ function UserAddresses() {
 
   }, []);
 
+
+
   console.log(addresses)
 
-  const handleNewEditAddress = (newAddress) => {
+  const handleSuccess = (newAddress) => {
     const updatedAddresses = addresses.map((address) => {
       if (address.id === newAddress.id) {
         return newAddress
@@ -43,7 +48,7 @@ function UserAddresses() {
       }
     )
     setAddresses(updatedAddresses);
-    setShowForm(false);
+    setSearchParams({});
 
   };
 
@@ -55,6 +60,21 @@ function UserAddresses() {
       } catch (error) {
         console.log(error.response);
     }
+  };
+
+
+  const handleOpenNew = () => {
+    setSearchParams({ action: 'new'});
+  };
+
+
+  const handleOpenEdit = (addressId) => {
+    setSearchParams({ action: 'edit', id: addressId.toString() });
+  };
+
+
+  const handleCloseForm = () => {
+    setSearchParams({});
   };
 
 
@@ -73,8 +93,8 @@ function UserAddresses() {
           </div>
         }
         <div className='address-form-container'>
-          {!showForm? <button onClick={() => setShowForm(true)} id='add-new-address-btn'><PlusSquareIcon className='plus-button-address'/>Agregar nueva dirección</button> :
-            <AddressForm addressToEdit={addressToEdit} onSuccess={handleNewEditAddress} onCancel={() => {setShowForm(false); setAddresToEdit(null) }}/>
+          {!showForm? <button onClick={handleOpenNew} id='add-new-address-btn'><PlusSquareIcon className='plus-button-address'/>Agregar nueva dirección</button> :
+            <AddressForm addressToEdit={addressToEdit} onSuccess={handleSuccess} onCancel={handleCloseForm}/>
           }
                    
         </div>
@@ -90,7 +110,7 @@ function UserAddresses() {
                 <p><strong>Región: </strong>{address.region_name}</p>
                 <p><strong>Comuna: </strong>{address.commune_name}</p>
                 <button id='delete-address-btn' onClick={()=> handleDeleteAddress(address.id)} ><CircleXIcon/>Eliminar</button>
-                <button id='edit-address-btn' onClick={() => {setAddresToEdit(address); setShowForm(true)}} ><EditIcon className='edit-icon'/>Editar</button>
+                <button id='edit-address-btn' onClick={() => handleOpenEdit(address.id)} ><EditIcon className='edit-icon'/>Editar</button>
               </li>
             ))}
           </ul>

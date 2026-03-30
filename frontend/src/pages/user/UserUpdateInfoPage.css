@@ -1,0 +1,95 @@
+
+.update-info-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    
+}
+
+.update-info-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: var(--white);
+    padding: 2rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 25px var(--shadow);
+}
+
+.info-form-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+#info-first-name,
+#info-last-name,
+#info-phone {
+    width: 350px;
+    padding: 0 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.4rem;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    padding-right: 2.8rem;
+}
+
+#info-phone {
+    width: 263px;
+}
+
+#info-phone:focus,
+#info-last-name:focus,
+#info-first-name:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+ 
+
+
+.update-info-form button {
+    align-self: flex-start;
+    margin-top: 1rem;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+    transition: all 0.3s ease;
+    font-size: 1.1rem; 
+    font-weight: 600;  
+    border: none;    
+    cursor: pointer; 
+}
+
+.update-info-form button:hover {
+    filter: brightness(1.15);
+    cursor: pointer;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px var(--shadow);
+}
+
+
+.update-info-form button:disabled {
+    cursor: not-allowed;
+    background-color: #bbb7b7;
+}
+
+
+@media (max-width: 768px) {
+    .update-info-container {
+        padding: 0 1rem;
+    }
+
+    #info-first-name,
+    #info-last-name,
+    #info-phone {
+        width: 100%;
+        padding: 8px 10px
+    }
+
+    .info-form-group {
+        align-items: center;
+    }
+
+}

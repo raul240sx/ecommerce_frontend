@@ -25,7 +25,6 @@ function UserPage() {
 					<Link to={'/my-account/my-orders'} >Mis Ordenes</Link>
 					<Link to={'/my-account/my-addresses'} >Mis Direcciones</Link>
 					<Link to={'/my-account/update-info'} >Actualizar información</Link>
-					<Link to={'/my-account/configurations'} >Configuraciones</Link>
 				</div>
 				<div className='division-line'>
 					<hr />

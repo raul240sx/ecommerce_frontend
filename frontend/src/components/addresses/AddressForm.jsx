@@ -186,7 +186,7 @@ function AddressForm({ addressToEdit, onSuccess, onCancel }) {
 
   }
 
-  /* || (addressForm.street === '') || (addressForm.number === '') || !selectedCommune */
+
 
   const handleDisableSubmitBtn = () => {
     if (isSubmitting || (addressForm.street === '') || (addressForm.number === '') || !selectedCommune) {

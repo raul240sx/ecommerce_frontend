@@ -20,7 +20,6 @@ import ProtectedRoute from './components/common/ProtectedRoute.jsx';
 import CategoryProducts from './pages/products/CategoryProduct.jsx';
 import UserPageLayout from './components/layouts/UserPageLayout.jsx';
 import UserAddressesPage from './pages/user/UserAddressesPage.jsx';
-import UserConfigurationsPage from './pages/user/UserConfigurationsPage.jsx';
 import UserMyAccountPage from './pages/user/UserMyAccountPage.jsx';
 import UserOrdersPage from './pages/user/UserOrdersPage.jsx';
 import UserUpdateInfoPage from './pages/user/UserUpdateInfoPage.jsx';
@@ -54,7 +53,6 @@ function App() {
               <Route path='/my-account/my-orders' element={<UserOrdersPage/>} />
               <Route path='/my-account/my-addresses' element={<UserAddressesPage/>} />
               <Route path='/my-account/update-info' element={<UserUpdateInfoPage/>} />
-              <Route path='/my-account/configurations' element={<UserConfigurationsPage/>} />
             </Route>
           </Route>
 

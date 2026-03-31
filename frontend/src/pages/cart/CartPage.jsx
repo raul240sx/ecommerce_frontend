@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import api from '../../api/axios';
 import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
@@ -61,9 +61,15 @@ function CartPage() {
 
 
   return(
+    <>
+    {user && !user?.is_verified && 
+      <div className='verify-information'>
+        <p>Para comprar debes verificar tu correo primero, si necesitas otro link de verificación puedes obtenerlo en la sección "Información" de tu perfil, o presionando <Link to={'/my-account'}>aquí</Link>.</p> 
+      </div> }
     <div className='shop-cart-container'>
       {cart.length > 0? (
         <div className='shop-cart-content'>
+          <h1>Carrito de compras</h1>
           <div className='cart-table'>
             {!isMobile && 
             <div className='table-titles'>
@@ -93,22 +99,23 @@ function CartPage() {
             <div className='checkout-section'>
               <div className='total-amount'>TOTAL: {formatter.format(totalAmount)}</div>
               <button className='buy-button' onClick={handleBuyButton} disabled={user && !user?.is_verified}>Completar la compra</button>
-              {user && !user?.is_verified && <p>Debes verificar tu cuenta primero, si necesitas otro link de verificación puedes obtenerlo en la sección "Verificar cuenta" de tu perfil</p> }
             </div>
+            
           </div>
+          
                      
         </div>
       ) : (
         <div className='shop-cart-content'>
-          <p>Tu carro de compras está vacío</p>
-          <button onClick={() => navigate('/')}>Volver al Inicio</button>
+          <h3>Tu carro de compras está vacío</h3>
+          <button className='buy-button' onClick={() => navigate('/')}>Volver al Inicio</button>
         </div>
         
 
       )}
 
     </div>
-    
+    </>
   )
 
 };

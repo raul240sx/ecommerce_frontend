@@ -86,6 +86,7 @@ function UserAddresses() {
 
   return(
     <div className='addresses-container'>
+      <h1>Direcciones</h1>
       <div className='addressess-content'>
         {(addresses.length <= 0 && !showForm)  && 
           <div className='no-addresses'>

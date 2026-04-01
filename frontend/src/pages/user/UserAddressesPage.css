@@ -2,9 +2,10 @@
     width: 100;
 }
 
-.addressess-content {
-    margin: 0 1rem;
+.addresses-container h1{
+    margin-bottom: 1rem;
 }
+
 
 .address-form-container {
     margin: 1rem;
@@ -93,4 +94,14 @@
 #edit-address-btn:hover {
     cursor: pointer;
     transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .addresses-container {
+        padding: 0 1rem;
+    }
+
+    .address-form-container {
+        margin: 0;
+    }
 }

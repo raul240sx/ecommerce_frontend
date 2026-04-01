@@ -1,22 +1,20 @@
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import './PaymentPage.css'
 
 function PaymentSuccessPage() {
 	return (
-		<div className='payment-container'>
-			<h1>Pago Exitoso</h1>
-			<p>Gracias por tu compra</p>
-			<p>En tu perfil puedes ver el estado de tus compras</p>
+		<div className='post-payment-container'>
+			<div className='post-payment-content'>
+				<h1>Pago Exitoso</h1>
+				<p>Gracias por tu compra</p>
+				<p>En tu perfil puedes ver el estado de tus compras</p>
 
-			<div className='payment-button-section'>
-				<button>
-				Regresar al inicio
-				</button>
-				<button>
-						Ir a mis compras
-				</button>
+				<div className='payment-button-section'>
+					<Link to={'/'} className='post-payment-btn' >Regresar al inicio</Link>
+					<Link to={'/my-account/my-orders'} className='post-payment-btn' >Ir a mis compras</Link>
 
-			</div>
-				
+				</div>
+			</div>		
 		</div>
 	)
 };

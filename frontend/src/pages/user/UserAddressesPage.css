@@ -104,4 +104,8 @@
     .address-form-container {
         margin: 0;
     }
+
+    #add-new-address-btn {
+        margin: 1rem 0;
+    }
 }

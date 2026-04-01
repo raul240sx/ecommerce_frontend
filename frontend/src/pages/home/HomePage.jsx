@@ -1,14 +1,19 @@
-import useProducts from '../../hooks/useProducts';
-import ProductHighlight from '../../components/products/ProductHighlight';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import useProducts from '../../hooks/useProducts.js';
+import ProductHighlight from '../../components/products/ProductHighlight.jsx';
 import hero from '../../assets/hero.jpg';
 import heroMobile from '../../assets/hero-mobile.jpg';
+import { XIcon } from '../../components/common/Icons.jsx';
 import './HomePage.css';
+
 
 
 function HomePage() {
   const guitarsCategory = 1;
   const amplifiersCategory = 2;
   const accessoriesCategories = 3;
+  const [ showAlert, setShowAlert ] = useState(true);
   const { products: guitars, loading: loadingGuitars, error: errorGuitars } = useProducts({ category: guitarsCategory, limit: 4 });
   const { products : amps, loading: loadingAmps, error: errorAmps } = useProducts({ category: amplifiersCategory, limit: 4})
   const { products: accessories, loading: loadingAccessories, error: errorAccessories } = useProducts({ category: accessoriesCategories, limit:4 })
@@ -22,6 +27,12 @@ function HomePage() {
 
   return (
     <div className='home-container'>
+      {showAlert && 
+        <div className='legal-information-strip'>
+          <p>Esta página es solo con fines educativos, los artículos presentados y las compras no son reales, mas información <Link to={'/legal'}>aquí</Link>.</p>
+          <button className='hide-alert-btn' onClick={() => setShowAlert(false)} ><XIcon className='x-btn-alert'/></button>
+        </div>
+      }
       <div className='home-hero'>
         <img src={hero} alt='hero' className='hero-img' />
         <img src={heroMobile} alt='hero-mobile' className='hero-img-mobile'/>

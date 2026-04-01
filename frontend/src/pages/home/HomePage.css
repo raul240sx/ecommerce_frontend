@@ -8,6 +8,31 @@
     margin-bottom: 2rem;
 }
 
+.legal-information-strip {
+    padding: 1.5rem 0;
+    background-color: #facc15;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    color: #7e3b12;
+    font-weight: 500;
+    gap: 3rem;
+}
+
+.hide-alert-btn {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    cursor: pointer;
+}
+
+.x-btn-alert{
+    width: 20px;
+}
+
 .home-content {
     max-width: 1200px;
 }
@@ -70,5 +95,16 @@
         display: flex;
         justify-content: center;
     }
+
+    .legal-information-strip {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .legal-information-strip {
+        gap: 0;
+        padding-right: 1.5rem;
+    }
+
 }
 

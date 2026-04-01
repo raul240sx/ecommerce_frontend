@@ -1,7 +1,8 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import api from '../../api/axios';
 import { useEffect, useState } from 'react';
 import OrderSummaryTable from '../../components/orders/OrderSummaryTable';
+import { XIcon } from '../../components/common/Icons.jsx';
 import './CheckoutPage.css'
 
 
@@ -14,23 +15,11 @@ const formatter = new Intl.NumberFormat('es-CL', {
 function CartCheckoutPage() {
 	const { orderId } = useParams();
 	const [ order, setOrder ] = useState(null);
+	const [ showModalInfo, setShowModalInfo ] = useState(false);
 	const [ loadingOrder, setLoadingOrder ] = useState(true);
-	const [ isMobile, setIsMobile ] = useState(window.innerWidth < 768);
 	const [ loadingPayment, setLoadingPayment ] = useState(false);
 
 
-	useEffect(() => {
-		const handleResize = () => {
-			setIsMobile(window.innerWidth < 768);
-		}
-
-		window.addEventListener('resize', handleResize);
-
-		return () => {
-			window.removeEventListener('resize', handleResize);
-		};
-		}, [])
-	
 
 	useEffect(() => {
 		const checkOrder = async() => {
@@ -80,11 +69,50 @@ function CartCheckoutPage() {
 		}
 
 	}
-	
+
+
+	if (order?.status === 'CANCELLED') {
+		return(
+			<div className='order-no-available'>
+				<h3>La orden N° {order.id} ha exedido el tiempo de pago y ha sido cancelada.</h3>
+				<Link to={'/'} className='return-btn'>Volver al inicio</Link>
+			</div>
+		)
+	}
+
+	if (order?.status === 'PAID') {
+		return(
+			<div className='order-no-available'>
+				<h3>La orden N° {order.id} ya ha sido pagada.</h3>
+				<Link to={'/'} className='return-btn'>Volver al inicio</Link>
+			</div>
+		)
+	}
 	
 
 	return(
 		<div className='checkout-container'>
+			{showModalInfo && 
+			<div className='info-modal-container'>
+				<div className='info-modal-content'>
+					<button className='close-modal-btn' onClick={() => setShowModalInfo(false)}><XIcon className='x-btn-alert'/></button>
+					<h3>Aviso Importante</h3>
+					<p>Las compras realizadas en este sitio web son ficticias y son solo con fines educativos, para mas información haz click <Link to={'/legal'}>aquí</Link>.</p>
+				
+					<div className='sandbox-data'>
+						<h4>La api de MercadoPago se encuentra en modo sandbox, si quieres probar probar el sistema de compra puedes seleccionar la opcion "Sin cuenta de Mercado Pago" y agregar una tarjeta con los siguientes datos: </h4>
+						<ul>
+							<li>Número de Tarjeta: 4168 8188 4444 7115</li>
+							<li>Fecha de expiración: Cualquier fecha futura (ej: 12/28).</li>
+							<li>CVV: 123</li>
+							<li>Nombre del titular: Tu nombre o "Prueba"</li>
+							<li>RUT: 11.111.111-1 (o cualquier RUT válido).</li>
+						</ul>
+					</div>
+					<button className='checkout-payment-btn' id='confirm-modal-btn' onClick={handlePayment} > Entendido, ir a pagar</button>
+				</div>
+			</div>
+			}
 			
 			{loadingOrder? <div>Cargando Orden</div> :
 			<div className='checkout-content'>
@@ -116,7 +144,10 @@ function CartCheckoutPage() {
 				<div className='payment-container'>
 					<p>TOTAL A PAGAR: {formatter.format(order.total_amount)}</p>
 
-					<button onClick={handlePayment}>
+					<button 
+						className='checkout-payment-btn'
+						disabled={order?.status === 'CANCELLED' || order?.status === 'PAID'}
+						onClick={() => setShowModalInfo(true)}>
 						Pagar con MercadoPago
 					</button>
 

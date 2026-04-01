@@ -14,9 +14,9 @@ function HomePage() {
   const amplifiersCategory = 2;
   const accessoriesCategories = 3;
   const [ showAlert, setShowAlert ] = useState(true);
-  const { products: guitars, loading: loadingGuitars, error: errorGuitars } = useProducts({ category: guitarsCategory, limit: 4 });
-  const { products : amps, loading: loadingAmps, error: errorAmps } = useProducts({ category: amplifiersCategory, limit: 4})
-  const { products: accessories, loading: loadingAccessories, error: errorAccessories } = useProducts({ category: accessoriesCategories, limit:4 })
+  const { products: guitars, loading: loadingGuitars, error: errorGuitars } = useProducts({ category: guitarsCategory, limit: 4, stock__gt: 0});
+  const { products : amps, loading: loadingAmps, error: errorAmps } = useProducts({ category: amplifiersCategory, limit: 4, stock__gt: 0})
+  const { products: accessories, loading: loadingAccessories, error: errorAccessories } = useProducts({ category: accessoriesCategories, limit:4, stock__gt: 0})
 
   const loading = loadingGuitars || loadingAmps || loadingAccessories;
   const error = errorGuitars || errorAmps || errorAccessories;

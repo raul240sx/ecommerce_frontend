@@ -1,0 +1,30 @@
+
+.about-container {
+    width: 100%;
+    display: flex;
+    margin-top: 2rem;
+    justify-content: center;
+}
+
+.about-content {
+    max-width: 1200px;
+    padding: 1rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    color: var(--text-color);
+}
+
+.about-info {
+    font-size: large;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        margin-bottom: 4rem;
+    }
+
+}

@@ -9,7 +9,7 @@
     padding-top: 2rem;
 }
 
-.page-title h1 {
+.page-title p {
     font-size: clamp(2rem, 4vw, 2.6rem);
     font-weight: 700;
     color: var(--text-color);

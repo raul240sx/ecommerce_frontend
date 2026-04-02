@@ -17,7 +17,7 @@ function UserPage() {
 	return(
 		<div className='account-container'>
 			<div className='page-title'>
-				<h1>Mi perfil</h1>
+				<p>Mi perfil</p>
 			</div>
 			<div className='account-content'>
 				<div className='sidebar-left'>

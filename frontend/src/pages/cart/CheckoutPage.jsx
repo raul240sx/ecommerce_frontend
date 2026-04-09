@@ -3,6 +3,7 @@ import api from '../../api/axios';
 import { useEffect, useState } from 'react';
 import OrderSummaryTable from '../../components/orders/OrderSummaryTable';
 import { XIcon } from '../../components/common/Icons.jsx';
+import AddressForm from '../../components/addresses/AddressForm.jsx';
 import './CheckoutPage.css'
 
 
@@ -18,6 +19,11 @@ function CartCheckoutPage() {
 	const [ showModalInfo, setShowModalInfo ] = useState(false);
 	const [ loadingOrder, setLoadingOrder ] = useState(true);
 	const [ loadingPayment, setLoadingPayment ] = useState(false);
+	const [ addresses, setAddresses ] = useState(null);
+	const [ loadingAddresses, setLoadingAddresses ] = useState(true);
+	const [ showForm, setShowForm ] = useState(false);
+	const [ selectedAddress, setSelectedAddress ] = useState('');
+	const [ updateAddresses, setUpdateAddress ] = useState(0);
 
 
 
@@ -48,6 +54,37 @@ function CartCheckoutPage() {
 	}, [orderId])
 
 
+	useEffect(() => {
+		const fetchAddresses = async() => {
+			try {
+				setLoadingAddresses(true);
+				const response = await api.get('users-api/addresses/');
+				setAddresses(response.data.results);
+				console.log('Las direcciones son:', response.data.results);
+
+			} catch (error) {
+				if (error.response) {
+					console.log('error en el backend al obtener las direcciones', error.response.data);
+					console.log('el codigo de error al intentar obtener las direcciones es: ', error.response.status);
+				}
+				else {
+					console.log('error al intentar comunicarse con el backend');
+				}
+			}
+			finally{
+				setLoadingAddresses(false);
+			}
+		}
+
+		fetchAddresses();
+
+	}, [updateAddresses])
+
+	const handleCloseForm = () => {
+    setShowForm(false);
+  };
+
+
 	const handlePayment = async() => {
 		try {
 			setLoadingPayment(true);
@@ -69,6 +106,13 @@ function CartCheckoutPage() {
 		}
 
 	}
+
+
+	const handleSuccess = (newAddress) => {
+		setSelectedAddress(newAddress.id);
+		setUpdateAddress(prev => prev + 1);
+		setShowForm(false);
+	};
 
 
 	if (order?.status === 'CANCELLED') {
@@ -100,13 +144,13 @@ function CartCheckoutPage() {
 					<p>Las compras realizadas en este sitio web son ficticias y son solo con fines educativos, para mas información haz click <Link to={'/legal'}>aquí</Link>.</p>
 				
 					<div className='sandbox-data'>
-						<h4>La api de MercadoPago se encuentra en modo sandbox, si quieres probar probar el sistema de compra puedes seleccionar la opcion "Sin cuenta de Mercado Pago" y agregar una tarjeta con los siguientes datos: </h4>
+						<h4>La api de MercadoPago por seguridad se encuentra en modo sandbox, si quieres probar probar el sistema de compra puedes seguir los siguientes pasos: </h4>
 						<ul>
-							<li>Número de Tarjeta: 4168 8188 4444 7115</li>
-							<li>Fecha de expiración: Cualquier fecha futura (ej: 12/28).</li>
-							<li>CVV: 123</li>
-							<li>Nombre del titular: Tu nombre o "Prueba"</li>
-							<li>RUT: 11.111.111-1 (o cualquier RUT válido).</li>
+							<li>En la sección de "¿Cómo quieres pagar?" debes seleccionar la opción "Ingresar con mi cuenta".</li>
+							<li>Ingresar con el email: TESTUSER971278915762313905</li>
+							<li>Seleccionar "Contraseña" como método de verificación para continuar.</li>
+							<li>Ingresar la contraseña: 3Vqlkkfrq9</li>
+							<li>Finalmente seleccionar la tarjeta Mastercard de credito terminada en 2580, ingresar el código de seguridad "123" y pagar.</li>
 						</ul>
 					</div>
 					<button className='checkout-payment-btn' id='confirm-modal-btn' onClick={handlePayment} > Entendido, ir a pagar</button>
@@ -119,26 +163,30 @@ function CartCheckoutPage() {
 				<h1>Checkout</h1>
 				<h2>Id de orden N° {order.id}</h2>
 				<OrderSummaryTable order={order}/>
-				
-				<div className='direction-container'>
-					<p>Dirección para el envío</p>
-					<div className='direction-form-container'>
-						<form>
-							<div className='direction checkout-form'>
-								<label htmlFor='checkout-dir-input'>Direccion</label>
-								<input type="text" id='checkout-dir-input' />
-							</div>
-							<div className='commune checkout-form'>
-								<label htmlFor='checkout-commune-input'>Comuna</label>
-								<input type="text" id='checkout-commune-input' />
-							</div>
-							<div className='region checkout-form'>
-								<label htmlFor='checkout-region-input'>Region</label>
-								<input type="text" id='checkout-region-input' />
-							</div>
-						</form>
-					</div>
 
+				<div className='checkout-address-container'>
+					<p>Dirección para el envío</p>
+
+					{(!showForm && !loadingAddresses) &&
+						<div className='address-listing'>
+							<label htmlFor='checkout-addresses'>Selecciona una dirección</label>
+							<select
+							name='address'
+							id='checkout-addresses'
+							onChange={(e) => setSelectedAddress(e.target.value)}
+							value={selectedAddress}
+							>
+								<option value=''>Selecciona dirección</option>
+								{addresses.map((address, idx) => (
+									<option key={idx} value={address.id}>{address.street} {address.number} | {address.commune_name}</option>
+								))}
+							</select>
+						</div>
+					}
+					
+					{showForm && <AddressForm onCancel={handleCloseForm} onSuccess={handleSuccess} /> }
+
+					{!showForm && <button className='new-direction-btn' onClick={() => setShowForm(true)}>Usar una dirección nueva</button>}
 				</div>
 
 				<div className='payment-container'>
@@ -146,7 +194,7 @@ function CartCheckoutPage() {
 
 					<button 
 						className='checkout-payment-btn'
-						disabled={order?.status === 'CANCELLED' || order?.status === 'PAID'}
+						disabled={order?.status === 'CANCELLED' || order?.status === 'PAID' || !selectedAddress}
 						onClick={() => setShowModalInfo(true)}>
 						Pagar con MercadoPago
 					</button>

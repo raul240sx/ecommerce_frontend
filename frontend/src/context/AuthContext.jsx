@@ -42,6 +42,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await api.post('users-api/logout/')
       
+      localStorage.removeItem('cart');
       setUser(null);
       setIsAuthenticated(false);
 

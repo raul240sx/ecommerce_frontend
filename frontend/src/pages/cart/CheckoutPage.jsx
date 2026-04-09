@@ -86,11 +86,17 @@ function CartCheckoutPage() {
 
 
 	const handlePayment = async() => {
+		
 		try {
+			const patchPayload = {
+				orderId: order.id,
+				addressId: selectedAddress
+			};
+			const resp1 = await api.patch('orders-api/order-address/', patchPayload);
 			setLoadingPayment(true);
 			const resp = await api.post(`orders-api/order-payment/${order.id}/`);
 			window.location.href = resp.data.payment_link;
-			console.log('La orden es:', resp.data);
+			console.log('La orden es:', resp1.data);
 
 		} catch (error) {
 			if (error.response) {

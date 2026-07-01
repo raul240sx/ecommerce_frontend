@@ -57,6 +57,8 @@
     padding: 2.5rem;
     border-radius: 12px;
     max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
     position: relative;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     animation: modalAppear 0.3s ease-out;
@@ -221,6 +223,14 @@
         display: none !important;
     }
 
+    .checkout-address-container {
+        padding: 1rem 0.3rem;
+    }
+
+    .checkout-address-container p {
+        padding-left: 1rem;
+    }
+
     .info-modal-content {
         padding-left: 1rem;
         padding-right: 1rem;
@@ -233,8 +243,6 @@
     .return-btn {
         margin-bottom: 6rem;
     }
-
-
 
 
     .direction-form-container {

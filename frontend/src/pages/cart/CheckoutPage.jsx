@@ -80,6 +80,19 @@ function CartCheckoutPage() {
 
 	}, [updateAddresses])
 
+	// Prevenir scroll del body cuando el modal está abierto
+	useEffect(() => {
+		if (showModalInfo) {
+			document.body.style.overflow = 'hidden';
+		} else {
+			document.body.style.overflow = 'auto';
+		}
+
+		return () => {
+			document.body.style.overflow = 'auto';
+		};
+	}, [showModalInfo])
+
 	const handleCloseForm = () => {
     setShowForm(false);
   };

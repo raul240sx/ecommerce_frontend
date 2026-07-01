@@ -10,17 +10,13 @@ import './LoginPage.css'
 function LoginPage() {
 	const { checkAuth, isAuthenticated, loading } = useAuth();
 	const navigate = useNavigate();
-
+	const [errors, setErrors] = useState({});
+	const [showPass, setShowPass] = useState(false);
+	const [disableButton, setDisableButton] = useState(false);
 	const [loginForm, setLoginForm] = useState({
 		'email':'',
 		'password':'' 
 	});
-
-	const [errors, setErrors] = useState({});
-
-	const [showPass, setShowPass] = useState(false);
-
-	const [disableButton, setDisableButton] = useState(false);
 
 
   /* REDIRECCIONAR A HOME ('/') SI ESTÁ AUTENTICADO */
@@ -49,10 +45,10 @@ function LoginPage() {
 			navigate('/')
 		}
 		catch (error){
-			console.error(error)
+			console.error(error.response)
 
 			if (error.response) {
-				console.log('Error al iniciar sesion', error.response.data)
+				console.log('Error al iniciar sesion aaaaa', error.response.data.detail)
 				setDisableButton(false);
 				setErrors(error.response.data)
 			}
@@ -102,7 +98,7 @@ function LoginPage() {
 						onChange={handleChange}
 						value={loginForm.email} />
 						<span className='error-message' aria-live='polite'>
-							{errors.email && errors.email[0]}
+							{(errors.email && (errors.email[0] === 'This field may not be blank.')) && 'Ingresa el correo'}
 						</span>
 					</div>
 						
@@ -136,7 +132,10 @@ function LoginPage() {
 						</div>
 					</div>
 						<span className='error-message' aria-live='polite'>
-								{errors.password && errors.password[0]}
+								{(errors.detail === 'No active account found with the given credentials') && 'Las credenciales no son válidas.'}
+						</span>
+						<span className='error-message' aria-live='polite'>
+							{(errors.password && (errors.password[0] === 'This field may not be blank.')) && 'Ingresa la contraseña'}
 						</span>
 						<button
 							className='login-btn' 

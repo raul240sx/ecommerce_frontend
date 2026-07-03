@@ -1,0 +1,48 @@
+.verify-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    padding: 1rem;
+}
+
+.verify-msg {
+    background-color: var(--white);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 28rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 25px var(--shadow);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.verify-msg h1 {
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
+
+.verify-msg h2 {
+    font-size: 1.1rem;
+    color: #555;
+    font-weight: 400;
+}
+
+.login-button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 0.8rem;
+    margin-top: 1rem;
+    border-radius: 0.4rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: filter 0.3s ease;
+}
+
+.login-button:hover {
+    filter: brightness(1.15);
+}

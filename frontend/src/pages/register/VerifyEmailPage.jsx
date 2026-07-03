@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useSearchParams, Link} from "react-router-dom"
-
+import "./VerifyEmailPage.css"
 
 import api from "../../api/axios"
 
